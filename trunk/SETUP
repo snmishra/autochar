@@ -1,0 +1,41 @@
+#	$Id: SETUP,v 1.6 1999/06/07 14:58:43 ryu Exp ryu $
+
+#	Copyright (C) 1999 Robert K. Yu
+#	email: robert@yu.org
+
+#	This file is part of Autochar.
+
+#	Autochar is free software; you can redistribute it and/or modify
+#	it under the terms of the GNU General Public License as published by
+#	the Free Software Foundation; either version 2, or (at your option)
+#	any later version.
+
+#	Autochar is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#	GNU General Public License for more details.
+
+#	You should have received a copy of the GNU General Public License
+#	along with Autochar; see the file COPYING.  If not, write to the
+#	Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+#	Boston, MA 02111-1307, USA.
+
+# install directory
+setenv AUTOCHAR		$HOME/src/autochar-1.5.6
+
+# tech directory
+setenv TECHDIR		$AUTOCHAR/tech/tsmc35
+#setenv TECHDIR		$AUTOCHAR/tech/hp35
+
+# run directory
+setenv RUNDIR		$AUTOCHAR/example
+
+# perl location
+setenv PERL		/usr/bin/perl
+#setenv PERL		/usr/local/bin/perl
+
+# add man page to path
+setenv MANPATH		"$AUTOCHAR/man:$MANPATH"
+
+# Modify path.
+set path = ($AUTOCHAR/bin $path)

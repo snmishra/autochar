@@ -1,0 +1,55 @@
+To get onto the autochar mailing list, go to
+
+    http://www.onelist.com/subscribe.sgi/autochar
+
+
+Version 1.5.6
+-------------
+
+	o Added tlf format generation
+
+
+Version 1.5.5
+-------------
+
+	o Added clock_gate module to characterize gated clock buffers
+	o Corrected typo in example spec for dffce (clock enable)
+
+
+Version 1.5.4
+-------------
+
+	o No translation of terminals to lower case.
+
+
+
+Version 1.5.3 (removed)
+-------------
+
+	o Added support for generic "section" in the spec,
+	  particularly useful for flops to specify the ff
+	  and table sections.
+
+	o Updated dff, dffce spec examples.
+
+
+Version 1.5.2
+-------------
+
+	o Replaced "rcbuffer" with "slewbuffer" in example run.
+
+	o Support versions of hspice which no longer has the
+	  space before the "=" in measure results.
+
+
+Version 1.5.1 (removed)
+-------------
+
+	o Fixed typo in Hspice script.
+
+
+Version 1.5 (removed)
+-----------
+
+	o First GPL release.
+

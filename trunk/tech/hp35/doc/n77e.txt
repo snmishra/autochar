@@ -1,0 +1,133 @@
+
+                           MOSIS PARAMETRIC TEST RESULTS
+
+          RUN: N77E                                         VENDOR: HP-NID
+    TECHNOLOGY: SCN035H                               FEATURE SIZE: 0.4 microns
+
+INTRODUCTION: This report contains the lot average results obtained by MOSIS
+              from measurements of MOSIS test structures on each wafer of
+              this fabrication lot. SPICE parameters obtained from similar
+              measurements on a selected wafer are also attached.
+
+COMMENTS: Hewlett Packard GMOS10Q.
+
+TRANSISTOR PARAMETERS   W/L      N-CHANNEL P-CHANNEL  UNITS
+
+ MINIMUM                0.60/0.4
+  Vth                                 0.67     -0.57  Volts
+
+ SHORT                  3.6/0.4
+  Vth                                 0.70     -0.61  Volts
+  Vpt                                10.0      -9.0   Volts
+  Vbkd                                9.5      -7.2   Volts
+  Idss                              520      -253     uA/um
+
+ WIDE                   10/0.4
+  Ids0                                1.1      -0.3   pA/um
+
+ LARGE                  3.6/3.6
+  Vth                                 0.72     -0.67  Volts
+  Vjbkd                               9.4      -8.7   Volts
+  Ijlk                               -7.5       1.8   pA
+  Gamma                               0.46      0.53  V^0.5
+
+ Delta length                        -0.06      0.07  microns
+  (L_eff = L_drawn-DL)
+ Delta width                          0.25      0.17  microns
+  (W_eff = W_drawn-DW)
+ K' (Uo*Cox/2)                      112.7     -24.8   uA/V^2
+
+COMMENTS: Delta L varies with design technology as a result of the different
+           mask biases applied for each technology. Please adjust the delta L
+           in this report to reflect the actual design technology of your
+           submission.
+                       Design Technology                   Delta L
+                       -----------------                   -------
+                       SCN4M_SUBM (lambda=0.2),
+                        HP_CMOS10QA                        no adjustment
+                       SCN4M (lambda=0.25)                 subtract 0.1 um
+
+FOX TRANSISTORS         GATE      N+ACTIVE  P+ACTIVE  UNITS
+ Vth                    Poly        >15.0    <-15.0   Volts
+
+PROCESS PARAMETERS    N+ACTV  P+ACTV  POLY  MTL1   MTL2   MTL3  N\PLY  UNITS
+ Sheet Resistance       2.9     2.7   2.5   0.06   0.06   0.06   1400  ohms/sq
+ Width Variation       -0.12   -0.09  0.07  0.04  -0.07  -0.11         microns
+  (measured - drawn)
+ Contact Resistance     2.5     2.4   2.2          0.86   0.70         ohms
+ Gate Oxide Thickness  76                                              angstrom
+
+PROCESS PARAMETERS       N_WELL       MTL4  UNITS
+ Sheet Resistance        1537         0.03  ohms/sq
+ Width Variation                      0.03  microns
+  (measured - drawn)
+ Contact Resistance                   0.67  ohms
+
+COMMENTS: N\POLY is N-well under polysilicon.
+
+CAPACITANCE PARAMETERS N+ACTV P+ACTV  POLY METAL1 METAL2 METAL3 METAL4 N_WELL UNITS
+ Area (substrate)      929    836      88   30     12      5     --      88   aF/um^2
+ Area (N+active)                     4533   47     19     13     11           aF/um^2
+ Area (P+active)                     4555                                     aF/um^2
+ Area (poly)                                69     19     10      7           aF/um^2
+ Area (metal1)                                     37     14      9           aF/um^2
+ Area (metal2)                                            39     15           aF/um^2
+ Area (metal3)                                                   41           aF/um^2
+ Fringe (substrate)    174    179           37     27     26     40           aF/um
+ Fringe (N+active)                    453                                     aF/um
+ Fringe (P+active)                    612                                     aF/um
+ Fringe (poly)                              65     36     30     24           aF/um
+ Fringe (metal1)                                   62     39     27           aF/um
+ Fringe (metal2)                                          55     35           aF/um
+ Fringe (metal3)                                                 48           aF/um
+
+CIRCUIT PARAMETERS                          UNITS
+ Inverters                   K
+  Vinv                      1.0       1.34  Volts
+  Vinv                      1.5       1.48  Volts
+  Vol (100 uA)              2.0       0.21  Volts
+  Voh (100 uA)              2.0       3.01  Volts
+  Vinv                      2.0       1.59  Volts
+  Gain                      2.0     -19.53
+ Ring Oscillator Freq.
+  DIV4 (31-stage,3.3V)              211.08  MHz
+ Ring Oscillator Power
+  DIV4 (31-stage,3.3V)                5.34  uW/MHz/g
+
+COMMENTS:
+================================================================
+
+        SPICE Model Parameters for Submicrometer Technologies
+
+Efforts to improve the accuracy of simulations in submicrometer
+technologies (HP CMOS26G and HP CMOS14TB) using BSIM1 models and
+Level=3 models have led us to the conclusion that no extraction
+strategy will provide sets of Level=3 or BSIM1 model parameters which
+will yield a set of SPICE model parameters which are as accurate as we
+desire for all transistor channel sizes. Continuing to devote
+resources to obtaining best fit sets of Level=3 and BSIM1 parameters
+will detract from our effort to move to BSIM3 v.3, which we believe
+will significantly improve the simulation accuracy of both digital and
+analog designs.
+
+In order to focus on the BSIM3 v.3 effort, we have suspended
+extraction of SPICE model parameters for submicrometer technologies
+(HP CMOS26G and HP CMOS14TB) for individual wafer lots. We will
+provide (upon request) Level=39 SPICE (binned HSPICE BSIM2) model
+parameters which are supplied by HP for CMOS26G, CMOS14TB, and
+CMOS10QA. The method of requesting these parameters is the same as
+that for requesting the HP process specifications, i.e., send a
+message to support@mosis.org and provide your commercial MOSIS account
+name, D-NAME and D-PASSWORD.
+
+We apologize for any inconvenience this change in SPICE model
+parameters policy may cause. However, the long term benefits of
+significantly improved accuracy of simulation with BSIM3 v.3 model
+parameters will hopefully be worth the short term inconvenience.
+
+Please address any comments, questions or suggestions to
+support@mosis.org.
+
+================================================================
+
+Download Text File

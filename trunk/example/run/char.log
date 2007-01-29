@@ -1,0 +1,524 @@
+for i in    dff_2x dffce_2x    nand2_2x nand2_4x      ; do \
+    make char_one CELL=$i; \
+done
+make[1]: Entering directory `/mnt/wireless/home1/people/ryu/src/autochar-1.5.5/example/run'
+(cd dff_2x; autochar -s				 -c dff_2x -o dff_2x.rpt /people/ryu/src/autochar-1.5.5/example/specs/stdcells.spec)
+Evaluating '/people/ryu/src/autochar-1.5.5/example/specs/stdcells.spec' ...
+Evaluating /people/ryu/src/autochar-1.5.5/example/specs/dff.spec ...
+Running Hspice on "dff_2x.d.ic_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        5.1
+user        4.0
+sys         0.8
+Extracting results from 'dff_2x.d.ic_0.out' ...
+Running Hspice on "dff_2x.clk.ic_1.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        5.2
+user        4.2
+sys         0.6
+Extracting results from 'dff_2x.clk.ic_1.out' ...
+Running Hspice on "dff_2x.clk_n.ic_2.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        4.9
+user        3.9
+sys         0.6
+Extracting results from 'dff_2x.clk_n.ic_2.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dff_2x.d.clk.q.s_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real       51.5
+user       42.5
+sys         7.8
+Extracting results from 'dff_2x.d.clk.q.s_0.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dff_2x.d.clk.q.s_1.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     3:17.0
+user     2:51.4
+sys        24.7
+Extracting results from 'dff_2x.d.clk.q.s_1.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dff_2x.d.clk.q.h_2.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real       50.9
+user       42.7
+sys         7.2
+Extracting results from 'dff_2x.d.clk.q.h_2.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dff_2x.d.clk.q.h_3.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     3:07.3
+user     2:42.3
+sys        23.8
+Extracting results from 'dff_2x.d.clk.q.h_3.out' ...
+Running Hspice on "dff_2x.clk.q.cq_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     1:31.8
+user     1:27.3
+sys         3.8
+Extracting results from 'dff_2x.clk.q.cq_0.out' ...
+Created 'dff_2x.lib'.
+Created 'dff_2x.db'.
+Created 'dff_2x.rpt'.
+
+                              AutoChar
+
+                   Version 1.5.5 -- January 1, 2000
+                   Copyright (C) 1999 Robert K. Yu
+		        email: robert@yu.org
+
+    Autochar is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2, or (at your option)
+    any later version.
+
+    Autochar is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Autochar; see the file COPYING.  If not, write to the
+    Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.
+
+make[1]: Leaving directory `/mnt/wireless/home1/people/ryu/src/autochar-1.5.5/example/run'
+make[1]: Entering directory `/mnt/wireless/home1/people/ryu/src/autochar-1.5.5/example/run'
+(cd dffce_2x; autochar -s				 -c dffce_2x -o dffce_2x.rpt /people/ryu/src/autochar-1.5.5/example/specs/stdcells.spec)
+Evaluating '/people/ryu/src/autochar-1.5.5/example/specs/stdcells.spec' ...
+Evaluating /people/ryu/src/autochar-1.5.5/example/specs/dffce.spec ...
+Running Hspice on "dffce_2x.d.ic_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        6.0
+user        4.7
+sys         0.9
+Extracting results from 'dffce_2x.d.ic_0.out' ...
+Running Hspice on "dffce_2x.ce.ic_1.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     1:06.7
+user       59.9
+sys         6.5
+Extracting results from 'dffce_2x.ce.ic_1.out' ...
+Running Hspice on "dffce_2x.clk.ic_2.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        7.9
+user        6.7
+sys         0.9
+Extracting results from 'dffce_2x.clk.ic_2.out' ...
+Running Hspice on "dffce_2x.clk_n.ic_3.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        5.5
+user        4.5
+sys         0.7
+Extracting results from 'dffce_2x.clk_n.ic_3.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dffce_2x.d.clk.q.s_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     1:20.5
+user     1:09.9
+sys         9.6
+Extracting results from 'dffce_2x.d.clk.q.s_0.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dffce_2x.d.clk.q.s_1.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     4:17.9
+user     3:52.4
+sys        24.4
+Extracting results from 'dffce_2x.d.clk.q.s_1.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dffce_2x.d.clk.q.h_2.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     1:23.7
+user     1:13.2
+sys         9.3
+Extracting results from 'dffce_2x.d.clk.q.h_2.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dffce_2x.d.clk.q.h_3.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     4:15.6
+user     3:50.3
+sys        24.2
+Extracting results from 'dffce_2x.d.clk.q.h_3.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dffce_2x.ce.clk.q.ces_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     1:24.1
+user     1:12.6
+sys        10.3
+Extracting results from 'dffce_2x.ce.clk.q.ces_0.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dffce_2x.ce.clk.q.ces_1.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     4:20.7
+user     3:54.0
+sys        25.1
+Extracting results from 'dffce_2x.ce.clk.q.ces_1.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dffce_2x.ce.clk.q.ceh_2.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     1:17.9
+user     1:07.2
+sys         9.4
+Extracting results from 'dffce_2x.ce.clk.q.ceh_2.out' ...
+INFO: slewbuffer buffer used for slew rate setup_hold at clock input.
+Running Hspice on "dffce_2x.ce.clk.q.ceh_3.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real     4:31.0
+user     3:50.4
+sys        24.5
+Extracting results from 'dffce_2x.ce.clk.q.ceh_3.out' ...
+Running Hspice on "dffce_2x.clk.q.cq_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real       19.3
+user       17.8
+sys         0.7
+Extracting results from 'dffce_2x.clk.q.cq_0.out' ...
+Created 'dffce_2x.lib'.
+Created 'dffce_2x.db'.
+Created 'dffce_2x.rpt'.
+
+                              AutoChar
+
+                   Version 1.5.5 -- January 1, 2000
+                   Copyright (C) 1999 Robert K. Yu
+		        email: robert@yu.org
+
+    Autochar is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2, or (at your option)
+    any later version.
+
+    Autochar is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Autochar; see the file COPYING.  If not, write to the
+    Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.
+
+make[1]: Leaving directory `/mnt/wireless/home1/people/ryu/src/autochar-1.5.5/example/run'
+make[1]: Entering directory `/mnt/wireless/home1/people/ryu/src/autochar-1.5.5/example/run'
+(cd nand2_2x; autochar -s				 -c nand2_2x -o nand2_2x.rpt /people/ryu/src/autochar-1.5.5/example/specs/stdcells.spec)
+Evaluating '/people/ryu/src/autochar-1.5.5/example/specs/stdcells.spec' ...
+Evaluating /people/ryu/src/autochar-1.5.5/example/specs/nand2.spec ...
+INFO: no buffers used for slew rate load_delay.
+Running Hspice on "nand2_2x.in0.out.ld_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        8.4
+user        5.7
+sys         1.4
+Extracting results from 'nand2_2x.in0.out.ld_0.out' ...
+INFO: no buffers used for slew rate load_delay.
+Running Hspice on "nand2_2x.in1.out.ld_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        8.4
+user        5.8
+sys         1.1
+Extracting results from 'nand2_2x.in1.out.ld_0.out' ...
+Running Hspice on "nand2_2x.in0.ic_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        4.2
+user        3.0
+sys         0.9
+Extracting results from 'nand2_2x.in0.ic_0.out' ...
+Running Hspice on "nand2_2x.in1.ic_1.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        4.6
+user        3.5
+sys         0.8
+Extracting results from 'nand2_2x.in1.ic_1.out' ...
+Created 'nand2_2x.lib'.
+Created 'nand2_2x.db'.
+Created 'nand2_2x.rpt'.
+
+                              AutoChar
+
+                   Version 1.5.5 -- January 1, 2000
+                   Copyright (C) 1999 Robert K. Yu
+		        email: robert@yu.org
+
+    Autochar is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2, or (at your option)
+    any later version.
+
+    Autochar is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Autochar; see the file COPYING.  If not, write to the
+    Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.
+
+make[1]: Leaving directory `/mnt/wireless/home1/people/ryu/src/autochar-1.5.5/example/run'
+make[1]: Entering directory `/mnt/wireless/home1/people/ryu/src/autochar-1.5.5/example/run'
+(cd nand2_4x; autochar -s				 -c nand2_4x -o nand2_4x.rpt /people/ryu/src/autochar-1.5.5/example/specs/stdcells.spec)
+Evaluating '/people/ryu/src/autochar-1.5.5/example/specs/stdcells.spec' ...
+Evaluating /people/ryu/src/autochar-1.5.5/example/specs/nand2.spec ...
+INFO: no buffers used for slew rate load_delay.
+Running Hspice on "nand2_4x.in0.out.ld_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        8.1
+user        5.9
+sys         1.0
+Extracting results from 'nand2_4x.in0.out.ld_0.out' ...
+INFO: no buffers used for slew rate load_delay.
+Running Hspice on "nand2_4x.in1.out.ld_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        8.2
+user        5.8
+sys         1.1
+Extracting results from 'nand2_4x.in1.out.ld_0.out' ...
+Running Hspice on "nand2_4x.in0.ic_0.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        6.6
+user        5.0
+sys         1.3
+Extracting results from 'nand2_4x.in0.ic_0.out' ...
+Running Hspice on "nand2_4x.in1.ic_1.sp" ...
+>info:         ***** hspice job concluded
+>info:         ***** hspice job concluded
+
+real        4.6
+user        3.4
+sys         0.9
+Extracting results from 'nand2_4x.in1.ic_1.out' ...
+Created 'nand2_4x.lib'.
+Created 'nand2_4x.db'.
+Created 'nand2_4x.rpt'.
+
+                              AutoChar
+
+                   Version 1.5.5 -- January 1, 2000
+                   Copyright (C) 1999 Robert K. Yu
+		        email: robert@yu.org
+
+    Autochar is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2, or (at your option)
+    any later version.
+
+    Autochar is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Autochar; see the file COPYING.  If not, write to the
+    Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.
+
+make[1]: Leaving directory `/mnt/wireless/home1/people/ryu/src/autochar-1.5.5/example/run'

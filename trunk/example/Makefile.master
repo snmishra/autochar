@@ -1,0 +1,88 @@
+#	$Id: Makefile.master,v 1.5 2000/01/09 11:29:12 ryu Exp $
+
+#	Copyright (C) 1999 Robert K. Yu
+#	email: robert@yu.org
+
+#	This file is part of Autochar.
+
+#	Autochar is free software; you can redistribute it and/or modify
+#	it under the terms of the GNU General Public License as published by
+#	the Free Software Foundation; either version 2, or (at your option)
+#	any later version.
+
+#	Autochar is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#	GNU General Public License for more details.
+
+#	You should have received a copy of the GNU General Public License
+#	along with Autochar; see the file COPYING.  If not, write to the
+#	Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+#	Boston, MA 02111-1307, USA.
+
+# Optional:
+#RUNDIR		=
+
+AC_CMD		= autochar
+AC_FLAGS	= -s				# debug OFF
+#AC_FLAGS	= -s -D				# debug ON
+CELLS		= $(RUNDIR)/cells
+
+LIBNAME		= stdcells
+CELL		=
+TYPE		=
+
+SPECS		= $(RUNDIR)/specs
+SYN_HEADER	= $(SPECS)/header.lib
+SYN_OUT		= $(LIBNAME).lib
+
+include $(CELLS)
+
+### Targets ####################################################################
+
+usage:
+	@echo "Usage: make <target> [ |& tee make.log & ]"
+	@echo "% make char    [TYPE=type][CELL=name]  ... run autochar"
+	@echo "% make syn                             ... create synopsys library $(SYN_OUT)"
+	@echo "% make tidy    [TYPE=type][CELL=name]  ... remove some outputs"
+	@echo "% make clean   [TYPE=type][CELL=name]  ... remove all outputs"
+	@echo
+	@echo "available types = ALL AND AOI BUF DFF INV LATCH MUX NAND NOR OAI OR XNOR XOR"
+
+
+char:
+	-for i in $($(TYPE)) $(CELL); do \
+	    make char_one CELL=$$i; \
+	done
+
+syn:
+	cat $(SYN_HEADER) */*.lib > $(SYN_OUT)
+	echo "}" >> $(SYN_OUT)
+
+tidy:
+	-for i in $($(TYPE)) $(CELL); do \
+	    make tidy_one CELL=$$i; \
+	done
+
+clean:
+	-for i in $($(TYPE)) $(CELL); do \
+	    make clean_one CELL=$$i; \
+	done
+
+
+### Nuts and Bolts #############################################################
+
+tidy_one:
+	-(cd $(CELL); rm -rf *.tr* *.mt* *.pa* *.st* *.ic *.log)
+
+clean_one:
+	-(cd $(CELL); rm -rf *.mt* *.pa* *.st* *.ic *.tr* *.out *.rpt *.log *.raw)
+
+char_one: $(CELL)/$(CELL).rpt
+
+$(CELL)/$(CELL).rpt : $(CELL)/$(CELL).sp
+	(cd $(CELL); $(AC_CMD) $(AC_FLAGS) -c $(CELL) -o $(CELL).rpt $(SPECS)/$(LIBNAME).spec)
+
+$(CELL)/$(CELL).sp :
+	-mkdir $(CELL)
+	# Create/extract the spice netlist.

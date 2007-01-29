@@ -1,0 +1,188 @@
+#	$Id$
+
+#	DO NOT EDIT.  This file generated automagically.
+#	Created: Sun Jan  9  3:27:05 US/Pacific 2000
+#	User: ryu
+
+$celldata{"dff_2x:cellprop:area"} = q/0/ ;
+$celldata{"dff_2x:cellprop:cell_footprint"} = q/"dff"/ ;
+$celldata{"dff_2x:cellprop:section"} = q/
+	ff ("IQ") {
+	    next_state : "d";
+	    clocked_on : "clk";
+	}
+	statetable ( "  d   clk ", " Q ") {
+	    table  : "  -   ~R  : - - :  N, \
+			H/L  R  : - - : H/L";
+	}/ ;
+$celldata{"dff_2x:clock_q:clk:q"} = q/1/ ;
+$celldata{"dff_2x:clock_q:clk:q:clk_q_hl"} = [
+    7.7645,
+    8.151,
+    8.70033333333333,
+    9.34233333333333,
+    9.84216666666667,
+    10.6026666666667,
+    ] ;
+$celldata{"dff_2x:clock_q:clk:q:clk_q_hla"} = q/7.84917651515151/ ;
+$celldata{"dff_2x:clock_q:clk:q:clk_q_hlb"} = q/28.0273892773894/ ;
+$celldata{"dff_2x:clock_q:clk:q:clk_q_lh"} = [
+    6.27766666666667,
+    6.629,
+    7.12966666666667,
+    7.72566666666667,
+    8.21183333333333,
+    8.97683333333333,
+    ] ;
+$celldata{"dff_2x:clock_q:clk:q:clk_q_lha"} = q/6.34706590909091/ ;
+$celldata{"dff_2x:clock_q:clk:q:clk_q_lhb"} = q/26.0831002331002/ ;
+$celldata{"dff_2x:clock_q:clk:q:clktype"} = q/rising/ ;
+$celldata{"dff_2x:clock_q:clk:q:falltime"} = [
+    3.43066666666667,
+    3.6285,
+    4.00366666666667,
+    4.53533333333333,
+    5.022,
+    5.83866666666667,
+    ] ;
+$celldata{"dff_2x:clock_q:clk:q:falltimea"} = q/3.41299166666667/ ;
+$celldata{"dff_2x:clock_q:clk:q:falltimeb"} = q/21.8782051282051/ ;
+$celldata{"dff_2x:clock_q:clk:q:lu_table"} = [
+    2.5e-15,
+    1e-14,
+    2.5e-14,
+    5e-14,
+    7.5e-14,
+    1.2e-13,
+    ] ;
+$celldata{"dff_2x:clock_q:clk:q:risetime"} = [
+    2.85183333333333,
+    3.015,
+    3.434,
+    4.12666666666667,
+    4.7715,
+    5.907,
+    ] ;
+$celldata{"dff_2x:clock_q:clk:q:risetimea"} = q/2.76836439393939/ ;
+$celldata{"dff_2x:clock_q:clk:q:risetimeb"} = q/26.8134032634033/ ;
+$celldata{"dff_2x:clock_q:clk_n:q"} = q/1/ ;
+$celldata{"dff_2x:clock_q:clk_n:q:clk_q_hl"} = [
+    7.7645,
+    8.151,
+    8.70033333333333,
+    9.34233333333333,
+    9.84216666666667,
+    10.6026666666667,
+    ] ;
+$celldata{"dff_2x:clock_q:clk_n:q:clk_q_hla"} = q/7.84917651515151/ ;
+$celldata{"dff_2x:clock_q:clk_n:q:clk_q_hlb"} = q/28.0273892773894/ ;
+$celldata{"dff_2x:clock_q:clk_n:q:clk_q_lh"} = [
+    6.27766666666667,
+    6.629,
+    7.12966666666667,
+    7.72566666666667,
+    8.21183333333333,
+    8.97683333333333,
+    ] ;
+$celldata{"dff_2x:clock_q:clk_n:q:clk_q_lha"} = q/6.34706590909091/ ;
+$celldata{"dff_2x:clock_q:clk_n:q:clk_q_lhb"} = q/26.0831002331002/ ;
+$celldata{"dff_2x:clock_q:clk_n:q:clktype"} = q/falling/ ;
+$celldata{"dff_2x:clock_q:clk_n:q:falltime"} = [
+    3.43066666666667,
+    3.6285,
+    4.00366666666667,
+    4.53533333333333,
+    5.022,
+    5.83866666666667,
+    ] ;
+$celldata{"dff_2x:clock_q:clk_n:q:falltimea"} = q/3.41299166666667/ ;
+$celldata{"dff_2x:clock_q:clk_n:q:falltimeb"} = q/21.8782051282051/ ;
+$celldata{"dff_2x:clock_q:clk_n:q:lu_table"} = [
+    2.5e-15,
+    1e-14,
+    2.5e-14,
+    5e-14,
+    7.5e-14,
+    1.2e-13,
+    ] ;
+$celldata{"dff_2x:clock_q:clk_n:q:risetime"} = [
+    2.85183333333333,
+    3.015,
+    3.434,
+    4.12666666666667,
+    4.7715,
+    5.907,
+    ] ;
+$celldata{"dff_2x:clock_q:clk_n:q:risetimea"} = q/2.76836439393939/ ;
+$celldata{"dff_2x:clock_q:clk_n:q:risetimeb"} = q/26.8134032634033/ ;
+$celldata{"dff_2x:input_cap:clk"} = q/0.0050201/ ;
+$celldata{"dff_2x:input_cap:clk_n"} = q/0.0095771/ ;
+$celldata{"dff_2x:input_cap:d"} = q/0.0047398/ ;
+$celldata{"dff_2x:setup_hold:d:clk:clktype"} = q/rising/ ;
+$celldata{"dff_2x:setup_hold:d:clk:hold"} = q/1/ ;
+$celldata{"dff_2x:setup_hold:d:clk:hold_hl"} = [
+    -117.266666666667,
+    -117.476666666667,
+    -117.695,
+    -117.895,
+    -118.721666666667,
+    ] ;
+$celldata{"dff_2x:setup_hold:d:clk:hold_lh"} = [
+    -2.545,
+    -2.61116666666667,
+    -2.76733333333333,
+    -2.95566666666667,
+    -3.70816666666667,
+    ] ;
+$celldata{"dff_2x:setup_hold:d:clk:lu_table"} = q/slew/ ;
+$celldata{"dff_2x:setup_hold:d:clk:setup"} = q/1/ ;
+$celldata{"dff_2x:setup_hold:d:clk:setup_hl"} = [
+    118.593333333333,
+    118.8,
+    119.018333333333,
+    119.22,
+    120.056666666667,
+    ] ;
+$celldata{"dff_2x:setup_hold:d:clk:setup_lh"} = [
+    4.57983333333333,
+    4.53466666666667,
+    4.53066666666667,
+    4.53866666666667,
+    4.87133333333333,
+    ] ;
+$celldata{"dff_2x:setup_hold:d:clk_n:clktype"} = q/falling/ ;
+$celldata{"dff_2x:setup_hold:d:clk_n:hold"} = q/1/ ;
+$celldata{"dff_2x:setup_hold:d:clk_n:hold_hl"} = [
+    -117.266666666667,
+    -117.476666666667,
+    -117.695,
+    -117.895,
+    -118.721666666667,
+    ] ;
+$celldata{"dff_2x:setup_hold:d:clk_n:hold_lh"} = [
+    -2.545,
+    -2.61116666666667,
+    -2.76733333333333,
+    -2.95566666666667,
+    -3.70816666666667,
+    ] ;
+$celldata{"dff_2x:setup_hold:d:clk_n:lu_table"} = q/slew/ ;
+$celldata{"dff_2x:setup_hold:d:clk_n:setup"} = q/1/ ;
+$celldata{"dff_2x:setup_hold:d:clk_n:setup_hl"} = [
+    118.593333333333,
+    118.8,
+    119.018333333333,
+    119.22,
+    120.056666666667,
+    ] ;
+$celldata{"dff_2x:setup_hold:d:clk_n:setup_lh"} = [
+    4.57983333333333,
+    4.53466666666667,
+    4.53066666666667,
+    4.53866666666667,
+    4.87133333333333,
+    ] ;
+$celldata{"dff_2x:termprop:q:function"} = q/"IQ"/ ;
+$celldata{"dff_2x:termprop:q:internal_node"} = q/"Q"/ ;
+$celldata{"dff_2x:termprop:q:max_capacitance"} = q/cap_factor * cap_unit * 2/ ;
+$celldata{"dff_2x:termprop:q:max_fanout"} = q/max_fanout_num/ ;
