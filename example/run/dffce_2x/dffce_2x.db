@@ -1,0 +1,229 @@
+#	$Id$
+
+#	DO NOT EDIT.  This file generated automagically.
+#	Created: Sun Jan  9  3:27:06 US/Pacific 2000
+#	User: ryu
+
+$celldata{"dffce_2x:cellprop:area"} = q/0/ ;
+$celldata{"dffce_2x:cellprop:cell_footprint"} = q/"dffce"/ ;
+$celldata{"dffce_2x:cellprop:section"} = q/
+	ff ("IQ") {
+	    next_state : "d";
+	    clocked_on : "clk";
+	}
+	statetable ( "  d   clk ce ", " Q ") {
+	    table  : "  -   ~R  H : - - :  N , \
+			H/L  R  H : - - : H/L, \
+			-   ~R  L : - - :  N, \
+			H/L  R  L : - - :  N";
+	}/ ;
+$celldata{"dffce_2x:clock_enable:ce:clk:cetype"} = q/active_high/ ;
+$celldata{"dffce_2x:clock_enable:ce:clk:clktype"} = q/rising/ ;
+$celldata{"dffce_2x:clock_enable:ce:clk:hold"} = q/1/ ;
+$celldata{"dffce_2x:clock_enable:ce:clk:hold_hl"} = [
+    -6.32483333333333,
+    -6.39083333333333,
+    -6.67866666666667,
+    -7.1095,
+    -9.033,
+    ] ;
+$celldata{"dffce_2x:clock_enable:ce:clk:hold_lh"} = [
+    -7.05733333333333,
+    -7.1415,
+    -7.344,
+    -7.63433333333333,
+    -8.86516666666667,
+    ] ;
+$celldata{"dffce_2x:clock_enable:ce:clk:lu_table"} = q/slew/ ;
+$celldata{"dffce_2x:clock_enable:ce:clk:setup"} = q/1/ ;
+$celldata{"dffce_2x:clock_enable:ce:clk:setup_hl"} = [
+    7.6715,
+    7.58733333333333,
+    7.57516666666667,
+    7.548,
+    7.89616666666667,
+    ] ;
+$celldata{"dffce_2x:clock_enable:ce:clk:setup_lh"} = [
+    8.909,
+    8.894,
+    8.93916666666667,
+    8.97933333333333,
+    9.54866666666667,
+    ] ;
+$celldata{"dffce_2x:clock_enable:ce:clk_n:cetype"} = q/active_high/ ;
+$celldata{"dffce_2x:clock_enable:ce:clk_n:clktype"} = q/falling/ ;
+$celldata{"dffce_2x:clock_enable:ce:clk_n:hold"} = q/1/ ;
+$celldata{"dffce_2x:clock_enable:ce:clk_n:hold_hl"} = [
+    -6.32483333333333,
+    -6.39083333333333,
+    -6.67866666666667,
+    -7.1095,
+    -9.033,
+    ] ;
+$celldata{"dffce_2x:clock_enable:ce:clk_n:hold_lh"} = [
+    -7.05733333333333,
+    -7.1415,
+    -7.344,
+    -7.63433333333333,
+    -8.86516666666667,
+    ] ;
+$celldata{"dffce_2x:clock_enable:ce:clk_n:lu_table"} = q/slew/ ;
+$celldata{"dffce_2x:clock_enable:ce:clk_n:setup"} = q/1/ ;
+$celldata{"dffce_2x:clock_enable:ce:clk_n:setup_hl"} = [
+    7.6715,
+    7.58733333333333,
+    7.57516666666667,
+    7.548,
+    7.89616666666667,
+    ] ;
+$celldata{"dffce_2x:clock_enable:ce:clk_n:setup_lh"} = [
+    8.909,
+    8.894,
+    8.93916666666667,
+    8.97933333333333,
+    9.54866666666667,
+    ] ;
+$celldata{"dffce_2x:clock_q:clk:q"} = q/1/ ;
+$celldata{"dffce_2x:clock_q:clk:q:clk_q_hl"} = [
+    7.8325,
+    10.3226666666667,
+    13.0645,
+    ] ;
+$celldata{"dffce_2x:clock_q:clk:q:clk_q_hla"} = q/7.8073468013468/ ;
+$celldata{"dffce_2x:clock_q:clk:q:clk_q_hlb"} = q/25.1531986531986/ ;
+$celldata{"dffce_2x:clock_q:clk:q:clk_q_lh"} = [
+    6.338,
+    8.6915,
+    11.6155,
+    ] ;
+$celldata{"dffce_2x:clock_q:clk:q:clk_q_lha"} = q/6.31422727272728/ ;
+$celldata{"dffce_2x:clock_q:clk:q:clk_q_lhb"} = q/23.7727272727273/ ;
+$celldata{"dffce_2x:clock_q:clk:q:clktype"} = q/rising/ ;
+$celldata{"dffce_2x:clock_q:clk:q:falltime"} = [
+    3.45833333333333,
+    5.52766666666667,
+    9.34866666666667,
+    ] ;
+$celldata{"dffce_2x:clock_q:clk:q:falltimea"} = q/3.43743097643098/ ;
+$celldata{"dffce_2x:clock_q:clk:q:falltimeb"} = q/20.9023569023569/ ;
+$celldata{"dffce_2x:clock_q:clk:q:lu_table"} = [
+    1ff,
+    100ff,
+    300ff,
+    ] ;
+$celldata{"dffce_2x:clock_q:clk:q:risetime"} = [
+    2.87516666666667,
+    5.47016666666667,
+    10.8406666666667,
+    ] ;
+$celldata{"dffce_2x:clock_q:clk:q:risetimea"} = q/2.84895454545454/ ;
+$celldata{"dffce_2x:clock_q:clk:q:risetimeb"} = q/26.2121212121212/ ;
+$celldata{"dffce_2x:clock_q:clk_n:q"} = q/1/ ;
+$celldata{"dffce_2x:clock_q:clk_n:q:clk_q_hl"} = [
+    7.8325,
+    10.3226666666667,
+    13.0645,
+    ] ;
+$celldata{"dffce_2x:clock_q:clk_n:q:clk_q_hla"} = q/7.8073468013468/ ;
+$celldata{"dffce_2x:clock_q:clk_n:q:clk_q_hlb"} = q/25.1531986531986/ ;
+$celldata{"dffce_2x:clock_q:clk_n:q:clk_q_lh"} = [
+    6.338,
+    8.6915,
+    11.6155,
+    ] ;
+$celldata{"dffce_2x:clock_q:clk_n:q:clk_q_lha"} = q/6.31422727272728/ ;
+$celldata{"dffce_2x:clock_q:clk_n:q:clk_q_lhb"} = q/23.7727272727273/ ;
+$celldata{"dffce_2x:clock_q:clk_n:q:clktype"} = q/falling/ ;
+$celldata{"dffce_2x:clock_q:clk_n:q:falltime"} = [
+    3.45833333333333,
+    5.52766666666667,
+    9.34866666666667,
+    ] ;
+$celldata{"dffce_2x:clock_q:clk_n:q:falltimea"} = q/3.43743097643098/ ;
+$celldata{"dffce_2x:clock_q:clk_n:q:falltimeb"} = q/20.9023569023569/ ;
+$celldata{"dffce_2x:clock_q:clk_n:q:lu_table"} = [
+    1ff,
+    100ff,
+    300ff,
+    ] ;
+$celldata{"dffce_2x:clock_q:clk_n:q:risetime"} = [
+    2.87516666666667,
+    5.47016666666667,
+    10.8406666666667,
+    ] ;
+$celldata{"dffce_2x:clock_q:clk_n:q:risetimea"} = q/2.84895454545454/ ;
+$celldata{"dffce_2x:clock_q:clk_n:q:risetimeb"} = q/26.2121212121212/ ;
+$celldata{"dffce_2x:input_cap:ce"} = q/0.026789/ ;
+$celldata{"dffce_2x:input_cap:clk"} = q/0.0092843/ ;
+$celldata{"dffce_2x:input_cap:clk_n"} = q/0.010617/ ;
+$celldata{"dffce_2x:input_cap:d"} = q/0.0026104/ ;
+$celldata{"dffce_2x:setup_hold:d:clk:clktype"} = q/rising/ ;
+$celldata{"dffce_2x:setup_hold:d:clk:hold"} = q/1/ ;
+$celldata{"dffce_2x:setup_hold:d:clk:hold_hl"} = [
+    -117.278333333333,
+    -117.496666666667,
+    -117.698333333333,
+    -117.898333333333,
+    -118.668333333333,
+    ] ;
+$celldata{"dffce_2x:setup_hold:d:clk:hold_lh"} = [
+    -5.71516666666667,
+    -5.76366666666667,
+    -5.91383333333333,
+    -6.11416666666667,
+    -6.9285,
+    ] ;
+$celldata{"dffce_2x:setup_hold:d:clk:lu_table"} = q/slew/ ;
+$celldata{"dffce_2x:setup_hold:d:clk:setup"} = q/1/ ;
+$celldata{"dffce_2x:setup_hold:d:clk:setup_hl"} = [
+    118.593333333333,
+    118.8,
+    119.018333333333,
+    119.22,
+    120.056666666667,
+    ] ;
+$celldata{"dffce_2x:setup_hold:d:clk:setup_lh"} = [
+    8.28783333333333,
+    8.23333333333333,
+    8.2065,
+    8.2055,
+    8.4645,
+    ] ;
+$celldata{"dffce_2x:setup_hold:d:clk_n:clktype"} = q/falling/ ;
+$celldata{"dffce_2x:setup_hold:d:clk_n:hold"} = q/1/ ;
+$celldata{"dffce_2x:setup_hold:d:clk_n:hold_hl"} = [
+    -117.278333333333,
+    -117.496666666667,
+    -117.698333333333,
+    -117.898333333333,
+    -118.668333333333,
+    ] ;
+$celldata{"dffce_2x:setup_hold:d:clk_n:hold_lh"} = [
+    -5.71516666666667,
+    -5.76366666666667,
+    -5.91383333333333,
+    -6.11416666666667,
+    -6.9285,
+    ] ;
+$celldata{"dffce_2x:setup_hold:d:clk_n:lu_table"} = q/slew/ ;
+$celldata{"dffce_2x:setup_hold:d:clk_n:setup"} = q/1/ ;
+$celldata{"dffce_2x:setup_hold:d:clk_n:setup_hl"} = [
+    118.593333333333,
+    118.8,
+    119.018333333333,
+    119.22,
+    120.056666666667,
+    ] ;
+$celldata{"dffce_2x:setup_hold:d:clk_n:setup_lh"} = [
+    8.28783333333333,
+    8.23333333333333,
+    8.2065,
+    8.2055,
+    8.4645,
+    ] ;
+$celldata{"dffce_2x:termprop:q:function"} = q/"IQ"/ ;
+$celldata{"dffce_2x:termprop:q:internal_node"} = q/"Q"/ ;
+$celldata{"dffce_2x:termprop:q:max_capacitance"} = q/cap_factor * cap_unit * 2/ ;
+$celldata{"dffce_2x:termprop:q:max_fanout"} = q/max_fanout_num/ ;
+$celldata{"dffce_2x:termprop:q_bar:function"} = q/"IQN"/ ;
+$celldata{"dffce_2x:termprop:q_bar:internal_node"} = q/"QN"/ ;

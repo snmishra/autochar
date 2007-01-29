@@ -1,0 +1,129 @@
+/*
+ *	$Id$
+
+ *	DO NOT EDIT.  This file generated automagically.
+ *	Created: Sun Jan  9  3:27:05 US/Pacific 2000
+ *	User: ryu
+
+ */
+
+    cell( "dff_2x" ) {
+	area : 0 ;
+	
+	ff ("IQ") {
+	    next_state : "d";
+	    clocked_on : "clk";
+	}
+	statetable ( "  d   clk ", " Q ") {
+	    table  : "  -   ~R  : - - :  N, \
+			H/L  R  : - - : H/L";
+	}
+	cell_footprint : "dff" ;
+	pin( "q" ) {
+	    max_capacitance : cap_factor * cap_unit * 2 ;
+	    internal_node : "Q" ;
+	    max_fanout : max_fanout_num ;
+	    function : "IQ" ;
+	    direction : output ;
+	    timing () {
+		related_pin : "clk" ;
+		timing_type : rising_edge ;
+		rise_propagation (cload) {
+		    /* Actual measurement values:
+		    values ("6.2777e+00, 6.6290e+00, 7.1297e+00, 7.7257e+00, 8.2118e+00, 8.9768e+00")
+		    */
+		    /* Propagation minus rise transition delay: */
+		    values ("3.4258e+00, 3.6140e+00, 3.6957e+00, 3.5990e+00, 3.4403e+00, 3.0698e+00")
+		}
+		rise_transition (cload) {
+		    values ("2.8518e+00, 3.0150e+00, 3.4340e+00, 4.1267e+00, 4.7715e+00, 5.9070e+00")
+		}
+		fall_propagation (cload) {
+		    /* Actual measurement values:
+		    values ("7.7645e+00, 8.1510e+00, 8.7003e+00, 9.3423e+00, 9.8422e+00, 1.0603e+01")
+		    */
+		    /* Propagation minus rise transition delay: */
+		    values ("4.3338e+00, 4.5225e+00, 4.6967e+00, 4.8070e+00, 4.8202e+00, 4.7640e+00")
+		}
+		fall_transition (cload) {
+		    values ("3.4307e+00, 3.6285e+00, 4.0037e+00, 4.5353e+00, 5.0220e+00, 5.8387e+00")
+		}
+	    }
+	    timing () {
+		related_pin : "clk_n" ;
+		timing_type : falling_edge ;
+		rise_propagation (cload) {
+		    /* Actual measurement values:
+		    values ("6.2777e+00, 6.6290e+00, 7.1297e+00, 7.7257e+00, 8.2118e+00, 8.9768e+00")
+		    */
+		    /* Propagation minus rise transition delay: */
+		    values ("3.4258e+00, 3.6140e+00, 3.6957e+00, 3.5990e+00, 3.4403e+00, 3.0698e+00")
+		}
+		rise_transition (cload) {
+		    values ("2.8518e+00, 3.0150e+00, 3.4340e+00, 4.1267e+00, 4.7715e+00, 5.9070e+00")
+		}
+		fall_propagation (cload) {
+		    /* Actual measurement values:
+		    values ("7.7645e+00, 8.1510e+00, 8.7003e+00, 9.3423e+00, 9.8422e+00, 1.0603e+01")
+		    */
+		    /* Propagation minus rise transition delay: */
+		    values ("4.3338e+00, 4.5225e+00, 4.6967e+00, 4.8070e+00, 4.8202e+00, 4.7640e+00")
+		}
+		fall_transition (cload) {
+		    values ("3.4307e+00, 3.6285e+00, 4.0037e+00, 4.5353e+00, 5.0220e+00, 5.8387e+00")
+		}
+	    }
+	}
+	pin( "d" ) {
+	    direction : input ;
+	    capacitance : 4.7398e-03 ;
+	    timing () {
+		related_pin : "clk" ;
+		timing_type : setup_rising ;
+		rise_constraint (slew) {
+		    values ("4.5798e+00, 4.5347e+00, 4.5307e+00, 4.5387e+00, 4.8713e+00")
+		}
+		fall_constraint (slew) {
+		    values ("1.1859e+02, 1.1880e+02, 1.1902e+02, 1.1922e+02, 1.2006e+02")
+		}
+	    }
+	    timing () {
+		related_pin : "clk" ;
+		timing_type : hold_rising ;
+		rise_constraint (slew) {
+		    values ("-2.5450e+00, -2.6112e+00, -2.7673e+00, -2.9557e+00, -3.7082e+00")
+		}
+		fall_constraint (slew) {
+		    values ("-1.1727e+02, -1.1748e+02, -1.1770e+02, -1.1789e+02, -1.1872e+02")
+		}
+	    }
+	    timing () {
+		related_pin : "clk_n" ;
+		timing_type : setup_falling ;
+		rise_constraint (slew) {
+		    values ("4.5798e+00, 4.5347e+00, 4.5307e+00, 4.5387e+00, 4.8713e+00")
+		}
+		fall_constraint (slew) {
+		    values ("1.1859e+02, 1.1880e+02, 1.1902e+02, 1.1922e+02, 1.2006e+02")
+		}
+	    }
+	    timing () {
+		related_pin : "clk_n" ;
+		timing_type : hold_falling ;
+		rise_constraint (slew) {
+		    values ("-2.5450e+00, -2.6112e+00, -2.7673e+00, -2.9557e+00, -3.7082e+00")
+		}
+		fall_constraint (slew) {
+		    values ("-1.1727e+02, -1.1748e+02, -1.1770e+02, -1.1789e+02, -1.1872e+02")
+		}
+	    }
+	}
+	pin( "clk" ) {
+	    direction : input ;
+	    capacitance : 5.0201e-03 ;
+	}
+	pin( "clk_n" ) {
+	    direction : input ;
+	    capacitance : 9.5771e-03 ;
+	}
+    }

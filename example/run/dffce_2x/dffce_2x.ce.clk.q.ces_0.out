@@ -1,0 +1,2403 @@
+Using: /cad/avanti/98.2/sol4/hspice
+******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+ Copyright (C) 1985-1997 by Avant! Corporation.                               
+ Unpublished-rights reserved under US copyright laws.
+ This program is protected by law and is subject to the 
+ terms and conditions of the license agreement found in:
+   /cad/avanti/98.2/license.txt
+ Use of this program is your acceptance to be bound by this 
+ license agreement. Star-HSPICE is the trademark of 
+ Avant! Corporation.
+ Input File: dffce_2x.ce.clk.q.ces_0.sp                                        
+lic:  
+lic: FLEXlm:v5.12  USER:ryu  HOSTNAME:encina  HOSTID:80a7396e  PID:6718 
+lic: Using FLEXlm license file: 
+lic: /cad/avanti/98.2/license.dat 
+lic: Checkout hspice;  Encryption code: 5C3400918DF1E79DC274 
+lic: License/Maintenance for hspice will expire on 26-mar-2000/2000.100 
+lic: 1(in_use)/1 FLOATING license(s) on SERVER wireless 
+lic:   
+Init: read install configuration file: /cad/avanti/98.2/meta.cfg
+Init: hspice initialization file: /cad/avanti/98.2/hspice.ini
+******  
+*      $id$                                                                   
+                                                                              
+******  
+* reading file:  /cad/avanti/98.2/hspice.ini
+ 
+*      do not edit.  this file generated automagically.
+*      created: sun jan  9  3:10:44 us/pacific 2000
+*      user: ryu
+ 
+*      char:   d-flop clock enable setup time characterization
+*      data:   'd'
+*      enable: 'ce'
+*      clock:  'clk'
+*      q:     'q'
+*      c:      'xdff.mout'
+*      trans:  'lh'
+ 
+*--- setup ---------------------------------------------------
+.include '/people/ryu/src/autochar-1.5.5/tech/tsmc35/include/ttlh.sp'
+*      $id: ttlh,v 1.4 1999/01/19 08:15:10 ryu exp ryu $
+ 
+*      copyright (c) 1999 robert k. yu
+*      email: robert@yu.org
+ 
+*      this file is part of autochar.
+ 
+*      autochar is free software; you can redistribute it and/or modify
+*      it under the terms of the gnu general public license as published by
+*      the free software foundation; either version 2, or (at your option)
+*      any later version.
+ 
+*      autochar is distributed in the hope that it will be useful,
+*      but without any warranty; without even the implied warranty of
+*      merchantability or fitness for a particular purpose.  see the
+*      gnu general public license for more details.
+ 
+*      you should have received a copy of the gnu general public license
+*      along with autochar; see the file copying.  if not, write to the
+*      free software foundation, inc., 59 temple place - suite 330,
+*      boston, ma 02111-1307, usa.
+ 
+ 
+*      sample hspice include file to read
+*      in hspice models, library, and conditions.
+ 
+*      ttlh :=
+*          t ypical n
+*          t ypical p
+*          l ow vdd
+*          h igh temperature
+ 
+.lib     /people/ryu/src/autochar-1.5.5/tech/tsmc35/lib/define.sp defaults
+.param
++      trise   = 200ps
++      tfall   = 200ps
++      period  = 6ns
++      pwidth  = 3ns
+ 
+.options
++      scale   = 1.0e-6
+ 
+.endl
+.lib     /people/ryu/src/autochar-1.5.5/tech/tsmc35/lib/define.sp low_voltage
+.param
++      vhigh = '3.3*0.9'
++      vlow = 0
++      vmidpoint = '(vhigh+vlow)/2'
+.endl
+.lib    /people/ryu/src/autochar-1.5.5/tech/tsmc35/lib/define.sp high_temp
+.temp 100
+.endl
+.lib     /people/ryu/src/autochar-1.5.5/tech/tsmc35/lib/define.sp supplies
+vvdd vdd 0 dc vhigh
+vgnd gnd 0 dc 0
+.global vdd gnd
+.endl
+ 
+.include /people/ryu/src/autochar-1.5.5/tech/tsmc35/lib/models.sp
+*  n88y spice bsim3 version 3.1 (hspice level 49) parameters
+ 
+* date: oct 30/98
+* lot: n88y                  waf: 11
+* temperature_parameters=default
+.model nch nmos (                                level   = 49
++version = 3.1            tnom    = 27             tox     = 7.6e-9
++xj      = 1.5e-7         nch     = 1.7e17         vth0    = 0.4964448
++k1      = 0.5307769      k2      = 0.0199705      k3      = 0.2963637
++k3b     = 0.2012165      w0      = 2.836319e-6    nlx     = 2.894802e-7
++dvt0w   = 0              dvt1w   = 5.3e6          dvt2w   = -0.032
++dvt0    = 0.112017       dvt1    = 0.2453972      dvt2    = -0.171915
++u0      = 444.9381976    ua      = 2.921284e-10   ub      = 1.773281e-18
++uc      = 7.067896e-11   vsat    = 1.130785e5     a0      = 1.1356246
++ags     = 0.2810374      b0      = 2.844393e-7    b1      = 5e-6
++keta    = -7.8181e-3     a1      = 0              a2      = 1
++rdsw    = 925.2701982    prwg    = -1e-3          prwb    = -1e-3
++wr      = 1              wint    = 7.186965e-8    lint    = 1.735515e-9
++xl      = 0              xw      = 0              dwg     = -1.712973e-8
++dwb     = 5.851691e-9    voff    = -0.132935      nfactor = 0.5710974
++cit     = 0              cdsc    = 8.607229e-4    cdscd   = 0
++cdscb   = 0              eta0    = 2.128321e-3    etab    = 0
++dsub    = 0.0257957      pclm    = 0.6766314      pdiblc1 = 1
++pdiblc2 = 1.787424e-3    pdiblcb = 0              drout   = 0.7873539
++pscbe1  = 6.973485e9     pscbe2  = 1.46235e-7     pvag    = 0.05
++delta   = 0.01           mobmod  = 1              prt     = 0
++ute     = -1.5           kt1     = -0.11          kt1l    = 0
++kt2     = 0.022          ua1     = 4.31e-9        ub1     = -7.61e-18
++uc1     = -5.6e-11       at      = 3.3e4          wl      = 0
++wln     = 1              ww      = 0              wwn     = 1
++wwl     = 0              ll      = 0              lln     = 1
++lw      = 0              lwn     = 1              lwl     = 0
++capmod  = 2              cgdo    = 1.96e-10       cgso    = 1.96e-10
++cgbo    = 0              cj      = 9.276962e-4    pb      = 0.8157962
++mj      = 0.3557696      cjsw    = 3.181055e-10   pbsw    = 0.6869149
++mjsw    = 0.1            pvth0   = -0.0252481     prdsw   = -96.4502805
++pk2     = -4.805372e-3   wketa   = -7.643187e-4   lketa   = -0.0129496      )
+*
+.model pch pmos (                                level   = 49
++version = 3.1            tnom    = 27             tox     = 7.6e-9
++xj      = 1.5e-7         nch     = 1.7e17         vth0    = -0.6636594
++k1      = 0.4564781      k2      = -0.019447      k3      = 39.382919
++k3b     = -2.8930965     w0      = 2.655585e-6    nlx     = 1.51028e-7
++dvt0w   = 0              dvt1w   = 5.3e6          dvt2w   = -0.032
++dvt0    = 1.1744581      dvt1    = 0.7631128      dvt2    = -0.1035171
++u0      = 151.3305606    ua      = 2.061211e-10   ub      = 1.823477e-18
++uc      = -8.97321e-12   vsat    = 9.915604e4     a0      = 1.1210053
++ags     = 0.3961954      b0      = 6.493139e-7    b1      = 4.273215e-6
++keta    = -9.27e-3       a1      = 0              a2      = 1
++rdsw    = 2.30725e3      prwg    = -1e-3          prwb    = 0
++wr      = 1              wint    = 5.962233e-8    lint    = 4.30928e-9
++xl      = 0              xw      = 0              dwg     = -1.596201e-8
++dwb     = 1.378919e-8    voff    = -0.15          nfactor = 2
++cit     = 0              cdsc    = 6.593084e-4    cdscd   = 0
++cdscb   = 0              eta0    = 0.0286461      etab    = 0
++dsub    = 0.2436027      pclm    = 4.3597508      pdiblc1 = 7.447024e-4
++pdiblc2 = 4.256073e-3    pdiblcb = 0              drout   = 0.0120292
++pscbe1  = 1.347622e10    pscbe2  = 5e-9           pvag    = 3.669793
++delta   = 0.01           mobmod  = 1              prt     = 0
++ute     = -1.5           kt1     = -0.11          kt1l    = 0
++kt2     = 0.022          ua1     = 4.31e-9        ub1     = -7.61e-18
++uc1     = -5.6e-11       at      = 3.3e4          wl      = 0
++wln     = 1              ww      = 0              wwn     = 1
++wwl     = 0              ll      = 0              lln     = 1
++lw      = 0              lwn     = 1              lwl     = 0
++capmod  = 2              cgdo    = 2.307e-10      cgso    = 2.307e-10
++cgbo    = 0              cj      = 1.420282e-3    pb      = 0.99
++mj      = 0.5490877      cjsw    = 4.773605e-10   pbsw    = 0.99
++mjsw    = 0.1997417      pvth0   = 6.58707e-3     prdsw   = -93.5582228
++pk2     = 1.011593e-3    wketa   = -0.0101398     lketa   = 6.027967e-3     )
+*
+.include 'dffce_2x.sp'
+*      $id: dffce_2x.sp,v 1.5 1999/01/30 21:07:43 ryu exp $
+ 
+.subckt xgate out in gaten gatep
++      wp=4
++      wn=2
+m0 in gatep out vdd pch l=0.35 w=wp
+m1 in gaten out gnd nch l=0.35 w=wn
+.ends
+ 
+.subckt inv out in
++      wp=12
++      wn=6
+m0 out in gnd gnd nch l=0.35 w=wn
+m1 out in vdd vdd pch l=0.35 w=wp
+.ends
+ 
+.subckt dff_2x q d clk clk_n
+* begin port declarations
+* port output q
+* port input d
+* port input clk
+* port input clk_n
+* end port declarations
+x1 min d clk_n clk xgate
+x2 min mout inv wp=2 wn=1
+x3 mout min inv
+x4 s mout clk clk_n xgate
+x5 s s_n inv wp=2 wn=1
+x6 s_n s inv
+x7 q s inv
+cmin min gnd 5ff
+cmout mout gnd 5ff
+cs s gnd 5ff
+cs_n s_n gnd 5ff
+.ends
+ 
+.subckt mux2 out s0 i0 i1
+* begin port declarations
+* port output out
+* port input s0
+* port input i0
+* port input i1
+* end port declarations
+x0 n1 i0 s0 s0_n xgate wp=6 wn=3
+x1 n1 i1 s0_n s0 xgate wp=6 wn=3
+x2 s0_n s0 inv wp=6 wn=3
+x3 out_n n1 inv wp=10 wn=5
+x4 out out_n inv wp=10 wn=5
+.ends
+ 
+.subckt dffce_2x q d ce clk clk_n
+* begin port declarations
+* port output q
+* port input d
+* port input ce
+* port input clk
+* port input clk_n
+* end port declarations
+xdff q d0 clk clk_n dff_2x
+xmux2 d0 ce d q mux2
+.ends
+ 
+.include /people/ryu/src/autochar-1.5.5/tech/tsmc35/lib/autochar.sp
+*      $id: autochar.sp,v 1.1 1999/01/19 09:04:21 ryu exp $
+ 
+*      copyright (c) 1999 robert k. yu
+*      email: robert@yu.org
+ 
+*      this file is part of autochar.
+ 
+*      autochar is free software; you can redistribute it and/or modify
+*      it under the terms of the gnu general public license as published by
+*      the free software foundation; either version 2, or (at your option)
+*      any later version.
+ 
+*      autochar is distributed in the hope that it will be useful,
+*      but without any warranty; without even the implied warranty of
+*      merchantability or fitness for a particular purpose.  see the
+*      gnu general public license for more details.
+ 
+*      you should have received a copy of the gnu general public license
+*      along with autochar; see the file copying.  if not, write to the
+*      free software foundation, inc., 59 temple place - suite 330,
+*      boston, ma 02111-1307, usa.
+ 
+*      simple inverter
+ 
+.subckt inverter in out
++      nl=0.6
++      nw=5.0
++      pl=0.6
++      pw=10.0
+mn0 out in 0   0   nch l=nl w=nw
+mp1 out in vdd vdd pch l=pl w=pw
+.ends
+ 
+ 
+*      simple buffer
+.subckt buffer in out
++      nl=0.6
++      nw=5.0
++      pl=0.6
++      pw=10.0
++      taper=3
+mn0 in1 in 0   0   nch l=nl w=nw
+mp1 in1 in vdd vdd pch l=pl w=pw
+mn2 out in1 0  0   nch l=nl w='taper*nw'
+mp3 out in1 vdd        vdd pch l=pl w='taper*pw'
+.ends
+ 
+ 
+*      simple buffer with infinite drive
+.subckt ebuffer in out
++      nl=0.6
++      nw=5.0
++      pl=0.6
++      pw=10.0
++      taper=3
+mn0 in1 in 0   0   nch l=nl w=nw
+mp1 in1 in vdd vdd pch l=pl w=pw
+mn2 in2 in1 0  0   nch l=nl w='taper*nw'
+mp3 in2 in1 vdd        vdd pch l=pl w='taper*pw'
+* fo=3 load
+xload1 in2 nc1 buffer m=3
+* infinite drive
+ebuf out 0 in2 0 +1
+.ends
+ 
+ 
+*      resistive 'buffer'
+.subckt resbuffer in out
++      r=1k
+rbuf in out r
+.ends
+ 
+ 
+*      short 'buffer'
+.subckt shortbuf in out
+vshort in out 0
+.ends
+ 
+ 
+*      infinite drive buffer with slew rate parameter using rc
+*      input must be an ideal pulse.
+*      to control the edge.
+.subckt slewbuffer in out
++      rslew=1k
++      slew=slewrate           $ default from global param slewrate
++      start=slew_start        $ default from global param slew_start
++      end=slew_end            $ default from global param slew_end
+.param cslew='abs(slew/(rslew*(log(start)-log(end))))'
+rbuf in out1 rslew
+cbuf out1 0 cslew
+* infinite drive
+ebuf out 0 out1 0 +1
+.ends
+ 
+.options
++      optlst  = 1
++      post    = 1
+.model optmod opt method=bisection
++      relin=0.001
++      relout=0.001
+.param setup = optsetup('0', '0', '1.5ns')
+.param slewrate = '4.00002e-11'
+.param slew_start = '0.1'
+.param slew_end = '0.9'
+ 
+*--- inputs --------------------------------------------------
+vclk vclk 0 pulse (
++     '0'
++      'vhigh'
++      '1ns+trise/2'
++     '0'
++     '0'
++      'pwidth+trise/2+tfall/2'
++      'period')
+vd vd 0 pulse (
++     '0'
++      'vhigh'
++      '1ns+trise+pwidth'
++      'trise'
++      'tfall'
++      '3*period'
++      '4*period')
+vce vce 0 pulse (
++      'vhigh'
++     '0'
++      '1ns+trise+pwidth/2'
++      'trise'
++      'tfall'
++      'period-trise-pwidth/2-setup'
++      '4*period')
+ 
+*--- test circuit --------------------------------------------
+xdbuf vd d ebuffer
+xcebuf vce ce slewbuffer
+xclkbuf vclk clk slewbuffer
+xflop
++      q       $ q:o
++      d       $ d:i
++      ce      $ ce:i
++      clk     $ clk:i
++      diff_1  $ clk_n:i
++      dffce_2x
+e1 diff_1 0 clk vdd -1
+ 
+*--- loads ---------------------------------------------------
+c0 q 0 100ff
+ 
+*--- measure -------------------------------------------------
+.option autostop
+* measure setup time:
+.measure tran setup_lh trig= v(ce) val='vhigh/2' cross=2
++      targ=v(clk) val='vhigh/2' rise=2
+* measure clock slew rate:
+.measure tran clkslew trig= v(clk) val='0+0.1*vhigh' rise=2
++      targ=v(clk) val='0+0.9*vhigh' rise=2
+ 
+* measure internal criterion node:
+.measure tran vcrit find v(xflop.xdff.mout)
++      when v(clk)='0.8*vhigh' rise=2
+.measure tran optpass param='(vhigh-vcrit)/vhigh'
++      goal='0.8'
+ 
+*--- transient -----------------------------------------------
+.trans 5ps '2*period' sweep
++      optimize=optsetup
++      results=optpass
++      model=optmod
+.trans 5ps '2*period'
+ 
+* measure final clock->q time:
+.measure tran clk_q trig=v(clk) val='vhigh/2' rise=2
++      targ=v(q) val='vhigh/2' rise=1
+ 
+* alter slewrate:
+.alter
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  circuit name directory                                               
+******  
+circuit number to circuit name directory
+number  circuitname                   definition        multiplier
+    0 main circuit
+    1 xdbuf.                          ebuffer            1.00 
+    2 xcebuf.                         slewbuffer         1.00 
+    3 xclkbuf.                        slewbuffer         1.00 
+    4 xflop.                          dffce_2x           1.00 
+    5 xdbuf.xload1.                   buffer             3.00 
+    6 xflop.xdff.                     dff_2x             1.00 
+    7 xflop.xmux2.                    mux2               1.00 
+    8 xflop.xdff.x1.                  xgate              1.00 
+    9 xflop.xdff.x2.                  inv                1.00 
+   10 xflop.xdff.x3.                  inv                1.00 
+   11 xflop.xdff.x4.                  xgate              1.00 
+   12 xflop.xdff.x5.                  inv                1.00 
+   13 xflop.xdff.x6.                  inv                1.00 
+   14 xflop.xdff.x7.                  inv                1.00 
+   15 xflop.xmux2.x0.                 xgate              1.00 
+   16 xflop.xmux2.x1.                 xgate              1.00 
+   17 xflop.xmux2.x2.                 inv                1.00 
+   18 xflop.xmux2.x3.                 inv                1.00 
+   19 xflop.xmux2.x4.                 inv                1.00 
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  mos   model parameters           tnom=  25.000 temp=  25.000         
+******  
+***************************************************************************
+***        model parameters  model name:   0:nch      model type:nmos   ***
+***************************************************************************
+
+  *** general parameters ***
+   deriv=   0.           
+
+  ***  level 49  model parameters  ***
+
+     hspver=       98.2               level=         49         
+    version=        3.1            paramchk=          0         
+     apwarn=          1             binUnit=          1         
+     capMod=          2               xpart=          1         
+     mobMod=          1              nqsMod=          0         
+        elm=          5            sfvtflag=          0         
+        tox=    7.6e-09 meter            xj=    1.5e-07 meter   
+    binflag=          0                lmin=          0 meter   
+       lmax=          0 meter          wmin=          0 meter   
+       wmax=          0 meter          lref=          0 meter   
+       wref=          0 meter          lint=1.73552e-09 meter   
+       wint=7.18696e-08 meter         lmult=          1         
+      wmult=          1                  ll=          0         
+        lln=          1                  lw=          0         
+        lwn=          1                 lwl=          0         
+         wl=          0                 wln=          1         
+         ww=          0                 wwn=          1         
+        wwl=          0                 dwg=-1.71297e-08 m/V     
+        dwb=5.85169e-09 m/V^1/2          a0=    1.13562         
+        ags=   0.281037 V^-1             b0=2.84439e-07 meter   
+         b1=      5e-06 meter          keta= -0.0078181 V^-1    
+       voff=  -0.132935 V             ngate=          0 cm^-3   
+        vbx=          0 V               vbm=         -3 V       
+         xt=   1.55e-07 meter          vth0=   0.496445 V       
+        nch=    1.7e+17 cm^-3          nsub=      6e+16 cm^-3   
+        nlx= 2.8948e-07 meter        gamma1=          0 V^-1/2  
+     gamma2=          0 V^-1/2           k1=   0.530777 V^1/2   
+         k2=  0.0199705                  k3=   0.296364         
+        k3b=   0.201216 V^-1             w0=2.83632e-06 meter   
+       dvt0=   0.112017                dvt1=   0.245397         
+       dvt2=  -0.171915 V^-1          dvt0w=          0 meter^-1
+      dvt1w=    5.3e+06 meter^-1      dvt2w=     -0.032 V^-1    
+       dsub=  0.0257957                eta0= 0.00212832         
+       etab=          0 V^-1             u0=    444.938 cm^2/V/sec
+         ua=2.92128e-10 m/V              ub=1.77328e-18 (m/V)^2 
+         uc= 7.0679e-11 V^-1           vsat=     113078 m/sec   
+         a1=          0 v^-1             a2=          1         
+      delta=       0.01 V              rdsw=     925.27 ohm-um  
+       prwg=     -0.001 V^-1           prwb=     -0.001 V^-1/2  
+         wr=          1                pclm=   0.676631         
+    pdiblc1=          1             pdiblc2= 0.00178742         
+    pdiblcb=          0 V^-1         pscbe1=6.97348e+09 V/m     
+     pscbe2=1.46235e-07 V/m           drout=   0.787354         
+       pvag=       0.05             nfactor=   0.571097         
+       cdsc=0.000860723 f/m^2         cdscb=          0 f/V/m^2 
+      cdscd=          0 f/V/m^2         cit=          0 f/m^2   
+     alpha0=          0 m/V           beta0=         30 V       
+        dlc=1.73552e-09 meter           dwc=7.18696e-08 meter   
+        clc=      1e-07 meter           cle=        0.6         
+       cgso=   1.96e-10 f/m            cgdo=   1.96e-10 f/m     
+       cgbo=          0 f/m            cgsl=          0 f/m     
+       cgdl=          0 f/m          ckappa=        0.6         
+         cf=8.75406e-11 f/m            tnom=     300.15 K       
+        kt1=      -0.11 V              kt1l=          0         
+        kt2=      0.022                 ute=       -1.5         
+        ua1=   4.31e-09 m/V             ub1=  -7.61e-18 (m/V)^2 
+        uc1=   -5.6e-11 m/V^2            at=      33000 m/s     
+        prt=          0         
+        using Berkeley noise model       noiMod=          1         
+       noia=      1e+20                noib=      50000         
+       noic=   -1.4e-12                  em=    4.1e+07         
+         ef=          1                  af=          1         
+         kf=          0         
+        using Hspice diodes            using ACM 
+        acm=         0                 hdif=         0 meter    
+       ldif=         0 meter             js=         0 amp/m^2  
+        jsw=         0 amp/m            xti=         0          
+          n=         1                   cj=0.000927696 f/m^2    
+         mj=   0.35577                   pb=  0.815796 V        
+       cjsw=3.18106e-10 f/m             mjsw=       0.1          
+        php=  0.815796 V               pbsw (not used)           
+     cjgate=3.18106e-10 f/m            cjswg (not used)           
+      mjswg (not used)                 pbswg (not used)           
+      lketa= -0.0129496               wketa=-0.000764319         
+      pvth0= -0.0252481                 pk2=-0.00480537         
+      prdsw=   -96.4503         
+***************************************************************************
+***        model parameters  model name:   0:pch      model type:pmos   ***
+***************************************************************************
+
+  *** general parameters ***
+   deriv=   0.           
+
+  ***  level 49  model parameters  ***
+
+     hspver=       98.2               level=         49         
+    version=        3.1            paramchk=          0         
+     apwarn=          1             binUnit=          1         
+     capMod=          2               xpart=          1         
+     mobMod=          1              nqsMod=          0         
+        elm=          5            sfvtflag=          0         
+        tox=    7.6e-09 meter            xj=    1.5e-07 meter   
+    binflag=          0                lmin=          0 meter   
+       lmax=          0 meter          wmin=          0 meter   
+       wmax=          0 meter          lref=          0 meter   
+       wref=          0 meter          lint=4.30928e-09 meter   
+       wint=5.96223e-08 meter         lmult=          1         
+      wmult=          1                  ll=          0         
+        lln=          1                  lw=          0         
+        lwn=          1                 lwl=          0         
+         wl=          0                 wln=          1         
+         ww=          0                 wwn=          1         
+        wwl=          0                 dwg=-1.5962e-08 m/V     
+        dwb=1.37892e-08 m/V^1/2          a0=    1.12101         
+        ags=   0.396195 V^-1             b0=6.49314e-07 meter   
+         b1=4.27322e-06 meter          keta=   -0.00927 V^-1    
+       voff=      -0.15 V             ngate=          0 cm^-3   
+        vbx=          0 V               vbm=         -3 V       
+         xt=   1.55e-07 meter          vth0=  -0.663659 V       
+        nch=    1.7e+17 cm^-3          nsub=      6e+16 cm^-3   
+        nlx=1.51028e-07 meter        gamma1=          0 V^-1/2  
+     gamma2=          0 V^-1/2           k1=   0.456478 V^1/2   
+         k2=  -0.019447                  k3=    39.3829         
+        k3b=    -2.8931 V^-1             w0=2.65558e-06 meter   
+       dvt0=    1.17446                dvt1=   0.763113         
+       dvt2=  -0.103517 V^-1          dvt0w=          0 meter^-1
+      dvt1w=    5.3e+06 meter^-1      dvt2w=     -0.032 V^-1    
+       dsub=   0.243603                eta0=  0.0286461         
+       etab=          0 V^-1             u0=    151.331 cm^2/V/sec
+         ua=2.06121e-10 m/V              ub=1.82348e-18 (m/V)^2 
+         uc=-8.97321e-12 V^-1           vsat=      99156 m/sec   
+         a1=          0 v^-1             a2=          1         
+      delta=       0.01 V              rdsw=    2307.25 ohm-um  
+       prwg=     -0.001 V^-1           prwb=          0 V^-1/2  
+         wr=          1                pclm=    4.35975         
+    pdiblc1=0.000744702             pdiblc2= 0.00425607         
+    pdiblcb=          0 V^-1         pscbe1=1.34762e+10 V/m     
+     pscbe2=      5e-09 V/m           drout=  0.0120292         
+       pvag=    3.66979             nfactor=          2         
+       cdsc=0.000659308 f/m^2         cdscb=          0 f/V/m^2 
+      cdscd=          0 f/V/m^2         cit=          0 f/m^2   
+     alpha0=          0 m/V           beta0=         30 V       
+        dlc=4.30928e-09 meter           dwc=5.96223e-08 meter   
+        clc=      1e-07 meter           cle=        0.6         
+       cgso=  2.307e-10 f/m            cgdo=  2.307e-10 f/m     
+       cgbo=          0 f/m            cgsl=          0 f/m     
+       cgdl=          0 f/m          ckappa=        0.6         
+         cf=8.75406e-11 f/m            tnom=     300.15 K       
+        kt1=      -0.11 V              kt1l=          0         
+        kt2=      0.022                 ute=       -1.5         
+        ua1=   4.31e-09 m/V             ub1=  -7.61e-18 (m/V)^2 
+        uc1=   -5.6e-11 m/V^2            at=      33000 m/s     
+        prt=          0         
+        using Berkeley noise model       noiMod=          1         
+       noia=    9.9e+18                noib=       2400         
+       noic=    1.4e-12                  em=    4.1e+07         
+         ef=          1                  af=          1         
+         kf=          0         
+        using Hspice diodes            using ACM 
+        acm=         0                 hdif=         0 meter    
+       ldif=         0 meter             js=         0 amp/m^2  
+        jsw=         0 amp/m            xti=         0          
+          n=         1                   cj=0.00142028 f/m^2    
+         mj=  0.549088                   pb=      0.99 V        
+       cjsw=4.77361e-10 f/m             mjsw=  0.199742          
+        php=      0.99 V               pbsw (not used)           
+     cjgate=4.77361e-10 f/m            cjswg (not used)           
+      mjswg (not used)                 pbswg (not used)           
+      lketa= 0.00602797               wketa= -0.0101398         
+      pvth0= 0.00658707                 pk2= 0.00101159         
+      prdsw=   -93.5582         
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  optimize model parameters        tnom=  25.000 temp=  25.000         
+******  
+*********************************
+***  model name:   0:optmod  ****
+*********************************
+
+    names  values   units     names  values   units     names  values   units
+    -----  ------   -----     -----  ------   -----     -----  ------   -----
+   level=   3.00             relin=   1.00m           relout=   1.00m        
+    grad=   1.00u            close=   1.00               cut=   2.00         
+     max= 600.00k           itropt=  20.00            cendif=   1.00n        
+  difsiz=   1.00m           parmin= 100.00m        
+ 
+
+**warning** both nodes of source     0:vgnd            
+            are connected together
+
+
+*** warning *** pulse rise time is  < or = zero, reset to tstep
+
+
+*** warning *** pulse fall time is  < or = zero, reset to tstep
+
+
+
+Warning: Pd = 0 is less than W.
+Model:    0:nch
+W = 5e-06, L = 6e-07
+
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.pa0                                            
+
+
+
+entering lmopt 
+  parm names init guess, lower, upper bounds
+setup                   0.            0.        1.5000E-09        0.    
+**warning** negative-mos conductance =     9:m0               iter=   38
+vds,vgs,vbs =      -251.          2.97            0.    
+ gm,gds,gmbs,ids=      25.0         0.135        -4.823E-02     0.159    
+bisec-opt.  iter =   1 xlo =        0.      xhi =   1.50000E-09
+                         x =        0.     xnew =   1.50000E-09
+                       err =   0.95890    
+
+bisec-opt.  iter =   2 xlo =        0.      xhi =   1.50000E-09
+                         x =   1.50000E-09 xnew =   7.50000E-10
+                       err =  -0.15416    
+
+no convergence with standard algorithm,  trying damped pseudo-transient
+
+ *** initial damped pseudo transient completed. ***
+ *** final try started ***
+
+**warning** This was a difficult operating point.
+            You can speed up your simulation by specifying:
+            .OPTION CONVERGE=1 GMINDC=   1.0000E-12
+
+bisec-opt.  iter =   3 xlo =        0.      xhi =   7.50000E-10
+                         x =   7.50000E-10 xnew =   3.75000E-10
+                       err =  -6.75829E-02
+
+bisec-opt.  iter =   4 xlo =   3.75000E-10  xhi =   7.50000E-10
+                         x =   3.75000E-10 xnew =   5.62500E-10
+                       err =   0.95841    
+
+bisec-opt.  iter =   5 xlo =   5.62500E-10  xhi =   7.50000E-10
+                         x =   5.62500E-10 xnew =   6.56250E-10
+                       err =   0.89781    
+
+bisec-opt.  iter =   6 xlo =   6.56250E-10  xhi =   7.50000E-10
+                         x =   6.56250E-10 xnew =   7.03125E-10
+                       err =   0.70397    
+
+bisec-opt.  iter =   7 xlo =   7.03125E-10  xhi =   7.50000E-10
+                         x =   7.03125E-10 xnew =   7.26563E-10
+                       err =   0.32420    
+
+bisec-opt.  iter =   8 xlo =   7.26563E-10  xhi =   7.50000E-10
+                         x =   7.26563E-10 xnew =   7.38281E-10
+                       err =   7.79654E-02
+
+bisec-opt.  iter =   9 xlo =   7.26563E-10  xhi =   7.38281E-10
+                         x =   7.38281E-10 xnew =   7.32422E-10
+                       err =  -9.72955E-03
+
+bisec-opt.  iter =  10 xlo =   7.32422E-10  xhi =   7.38281E-10
+                         x =   7.32422E-10 xnew =   7.35352E-10
+                       err =   2.85394E-02
+
+bisec-opt.  iter =  11 xlo =   7.35352E-10  xhi =   7.38281E-10
+                         x =   7.35352E-10 xnew =   7.36816E-10
+                       err =   7.97630E-03
+
+bisec-opt.  iter =  12 xlo =   7.35352E-10  xhi =   7.36816E-10
+                         x =   7.36816E-10 xnew =   7.36084E-10
+                       err =  -1.30913E-03
+
+bisec-opt.  iter =  13 xlo =   7.36084E-10  xhi =   7.36816E-10
+                         x =   7.36084E-10 xnew =   7.36450E-10
+                       err =   3.25467E-03
+
+bisec-opt.  iter =  14 xlo =   7.36450E-10  xhi =   7.36816E-10
+                         x =   7.36450E-10 xnew =   7.36633E-10
+                       err =   9.53432E-04
+
+bisec-opt.  iter =  15 xlo =   7.36450E-10  xhi =   7.36633E-10
+                         x =   7.36633E-10 xnew =   7.36542E-10
+                       err =  -1.82634E-04
+
+         optimization completed, the condition
+         relin =  1.0000E-03 is satisfied
+
+         optimization completed, the condition
+         relout =  1.0000E-03 is satisfied
+
+
+**** optimized parameters optsetup        
+
+.param setup         = 736.6333p      
+
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  operating point information      tnom=  25.000 temp= 100.000         
+******  
+***** operating point status is voltage   simulation time is     0.     
+    node    =voltage       node    =voltage       node    =voltage
+
+
++ 0:ce      =   2.9700   0:clk     =   0.       0:d       =   6.7627n
++ 0:diff_1  =   2.9700   0:q       =   1.3476   0:vce     =   2.9700 
++ 0:vclk    =   0.       0:vd      =   0.       0:vdd     =   2.9700 
++ 1:in1     =   2.9700   1:in2     =   6.7627n  1:nc1     =   6.7627n
++ 2:out1    =   2.9700   3:out1    =   0.       4:d0      =  13.7332n
++ 5:in1     =   2.9700   6:min     =  17.6588n  6:mout    =   2.9700 
++ 6:s       =   1.3986   6:s_n     =   1.3476   7:n1      =  17.9459n
++ 7:out_n   =   2.9700   7:s0_n    =  11.3427n
+
+
+
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.tr0                                            
+
+******  
+*      $id$                                                                   
+ ******  transient analysis               tnom=  25.000 temp= 100.000         
+******  
+  setup_lh        =  5.3454E-10  targ=  7.1161E-09   trig=  6.5816E-09
+  clkslew         =  4.3023E-11  targ=  7.1472E-09   trig=  7.1042E-09
+  vcrit           =  5.9357E-01
+  optpass         =  8.0015E-01
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.tr1                                            
+
+******  
+*      $id$                                                                   
+ ******  transient analysis               tnom=  25.000 temp= 100.000         
+******  
+  setup_lh        =  5.3454E-10  targ=  7.1161E-09   trig=  6.5816E-09
+  clkslew         =  4.3023E-11  targ=  7.1472E-09   trig=  7.1042E-09
+  vcrit           =  5.9357E-01
+  optpass         =  8.0015E-01
+  clk_q           =  4.7153E-10  targ=  7.5876E-09   trig=  7.1161E-09
+
+         ***** job concluded
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  job statistics summary           tnom=  25.000 temp= 100.000         
+******  
+
+          total memory used        315 kbytes
+
+ # nodes =    24 # elements=    49
+ # diodes=     0 # bjts    =     0 # jfets   =     0 # mosfets =    32
+
+    analysis      time      # points  tot. iter  conv.iter
+
+    op point          1.33         1       558
+    transient        15.83      2401     22788      9750 rev=  451
+    readin            0.25
+    errchk            0.03
+    setup             0.00
+    output            0.01
+          total cpu time         16.67 seconds
+              job started at  03:10:44  01/09/2000
+              job ended   at  03:11:02  01/09/2000
+
+
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+                                                                              
+ ******    alter processing listing       tnom=  25.000 temp= 100.000         
+******  
+.param slewrate = '7.99998e-11'
+.alter
+$ alter processing continues $
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  circuit name directory                                               
+******  
+circuit number to circuit name directory
+number  circuitname                   definition        multiplier
+    0 main circuit
+    1 xdbuf.                          ebuffer            1.00 
+    2 xcebuf.                         slewbuffer         1.00 
+    3 xclkbuf.                        slewbuffer         1.00 
+    4 xflop.                          dffce_2x           1.00 
+    5 xdbuf.xload1.                   buffer             3.00 
+    6 xflop.xdff.                     dff_2x             1.00 
+    7 xflop.xmux2.                    mux2               1.00 
+    8 xflop.xdff.x1.                  xgate              1.00 
+    9 xflop.xdff.x2.                  inv                1.00 
+   10 xflop.xdff.x3.                  inv                1.00 
+   11 xflop.xdff.x4.                  xgate              1.00 
+   12 xflop.xdff.x5.                  inv                1.00 
+   13 xflop.xdff.x6.                  inv                1.00 
+   14 xflop.xdff.x7.                  inv                1.00 
+   15 xflop.xmux2.x0.                 xgate              1.00 
+   16 xflop.xmux2.x1.                 xgate              1.00 
+   17 xflop.xmux2.x2.                 inv                1.00 
+   18 xflop.xmux2.x3.                 inv                1.00 
+   19 xflop.xmux2.x4.                 inv                1.00 
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  mos   model parameters           tnom=  25.000 temp=  25.000         
+******  
+***************************************************************************
+***        model parameters  model name:   0:nch      model type:nmos   ***
+***************************************************************************
+
+  *** general parameters ***
+   deriv=   0.           
+
+  ***  level 49  model parameters  ***
+
+     hspver=       98.2               level=         49         
+    version=        3.1            paramchk=          0         
+     apwarn=          1             binUnit=          1         
+     capMod=          2               xpart=          1         
+     mobMod=          1              nqsMod=          0         
+        elm=          5            sfvtflag=          0         
+        tox=    7.6e-09 meter            xj=    1.5e-07 meter   
+    binflag=          0                lmin=          0 meter   
+       lmax=          0 meter          wmin=          0 meter   
+       wmax=          0 meter          lref=          0 meter   
+       wref=          0 meter          lint=1.73552e-09 meter   
+       wint=7.18696e-08 meter         lmult=          1         
+      wmult=          1                  ll=          0         
+        lln=          1                  lw=          0         
+        lwn=          1                 lwl=          0         
+         wl=          0                 wln=          1         
+         ww=          0                 wwn=          1         
+        wwl=          0                 dwg=-1.71297e-08 m/V     
+        dwb=5.85169e-09 m/V^1/2          a0=    1.13562         
+        ags=   0.281037 V^-1             b0=2.84439e-07 meter   
+         b1=      5e-06 meter          keta= -0.0078181 V^-1    
+       voff=  -0.132935 V             ngate=          0 cm^-3   
+        vbx=          0 V               vbm=         -3 V       
+         xt=   1.55e-07 meter          vth0=   0.496445 V       
+        nch=    1.7e+17 cm^-3          nsub=      6e+16 cm^-3   
+        nlx= 2.8948e-07 meter        gamma1=          0 V^-1/2  
+     gamma2=          0 V^-1/2           k1=   0.530777 V^1/2   
+         k2=  0.0199705                  k3=   0.296364         
+        k3b=   0.201216 V^-1             w0=2.83632e-06 meter   
+       dvt0=   0.112017                dvt1=   0.245397         
+       dvt2=  -0.171915 V^-1          dvt0w=          0 meter^-1
+      dvt1w=    5.3e+06 meter^-1      dvt2w=     -0.032 V^-1    
+       dsub=  0.0257957                eta0= 0.00212832         
+       etab=          0 V^-1             u0=    444.938 cm^2/V/sec
+         ua=2.92128e-10 m/V              ub=1.77328e-18 (m/V)^2 
+         uc= 7.0679e-11 V^-1           vsat=     113078 m/sec   
+         a1=          0 v^-1             a2=          1         
+      delta=       0.01 V              rdsw=     925.27 ohm-um  
+       prwg=     -0.001 V^-1           prwb=     -0.001 V^-1/2  
+         wr=          1                pclm=   0.676631         
+    pdiblc1=          1             pdiblc2= 0.00178742         
+    pdiblcb=          0 V^-1         pscbe1=6.97348e+09 V/m     
+     pscbe2=1.46235e-07 V/m           drout=   0.787354         
+       pvag=       0.05             nfactor=   0.571097         
+       cdsc=0.000860723 f/m^2         cdscb=          0 f/V/m^2 
+      cdscd=          0 f/V/m^2         cit=          0 f/m^2   
+     alpha0=          0 m/V           beta0=         30 V       
+        dlc=1.73552e-09 meter           dwc=7.18696e-08 meter   
+        clc=      1e-07 meter           cle=        0.6         
+       cgso=   1.96e-10 f/m            cgdo=   1.96e-10 f/m     
+       cgbo=          0 f/m            cgsl=          0 f/m     
+       cgdl=          0 f/m          ckappa=        0.6         
+         cf=8.75406e-11 f/m            tnom=     300.15 K       
+        kt1=      -0.11 V              kt1l=          0         
+        kt2=      0.022                 ute=       -1.5         
+        ua1=   4.31e-09 m/V             ub1=  -7.61e-18 (m/V)^2 
+        uc1=   -5.6e-11 m/V^2            at=      33000 m/s     
+        prt=          0         
+        using Berkeley noise model       noiMod=          1         
+       noia=      1e+20                noib=      50000         
+       noic=   -1.4e-12                  em=    4.1e+07         
+         ef=          1                  af=          1         
+         kf=          0         
+        using Hspice diodes            using ACM 
+        acm=         0                 hdif=         0 meter    
+       ldif=         0 meter             js=         0 amp/m^2  
+        jsw=         0 amp/m            xti=         0          
+          n=         1                   cj=0.000927696 f/m^2    
+         mj=   0.35577                   pb=  0.815796 V        
+       cjsw=3.18106e-10 f/m             mjsw=       0.1          
+        php=  0.815796 V               pbsw (not used)           
+     cjgate=3.18106e-10 f/m            cjswg (not used)           
+      mjswg (not used)                 pbswg (not used)           
+      lketa= -0.0129496               wketa=-0.000764319         
+      pvth0= -0.0252481                 pk2=-0.00480537         
+      prdsw=   -96.4503         
+***************************************************************************
+***        model parameters  model name:   0:pch      model type:pmos   ***
+***************************************************************************
+
+  *** general parameters ***
+   deriv=   0.           
+
+  ***  level 49  model parameters  ***
+
+     hspver=       98.2               level=         49         
+    version=        3.1            paramchk=          0         
+     apwarn=          1             binUnit=          1         
+     capMod=          2               xpart=          1         
+     mobMod=          1              nqsMod=          0         
+        elm=          5            sfvtflag=          0         
+        tox=    7.6e-09 meter            xj=    1.5e-07 meter   
+    binflag=          0                lmin=          0 meter   
+       lmax=          0 meter          wmin=          0 meter   
+       wmax=          0 meter          lref=          0 meter   
+       wref=          0 meter          lint=4.30928e-09 meter   
+       wint=5.96223e-08 meter         lmult=          1         
+      wmult=          1                  ll=          0         
+        lln=          1                  lw=          0         
+        lwn=          1                 lwl=          0         
+         wl=          0                 wln=          1         
+         ww=          0                 wwn=          1         
+        wwl=          0                 dwg=-1.5962e-08 m/V     
+        dwb=1.37892e-08 m/V^1/2          a0=    1.12101         
+        ags=   0.396195 V^-1             b0=6.49314e-07 meter   
+         b1=4.27322e-06 meter          keta=   -0.00927 V^-1    
+       voff=      -0.15 V             ngate=          0 cm^-3   
+        vbx=          0 V               vbm=         -3 V       
+         xt=   1.55e-07 meter          vth0=  -0.663659 V       
+        nch=    1.7e+17 cm^-3          nsub=      6e+16 cm^-3   
+        nlx=1.51028e-07 meter        gamma1=          0 V^-1/2  
+     gamma2=          0 V^-1/2           k1=   0.456478 V^1/2   
+         k2=  -0.019447                  k3=    39.3829         
+        k3b=    -2.8931 V^-1             w0=2.65558e-06 meter   
+       dvt0=    1.17446                dvt1=   0.763113         
+       dvt2=  -0.103517 V^-1          dvt0w=          0 meter^-1
+      dvt1w=    5.3e+06 meter^-1      dvt2w=     -0.032 V^-1    
+       dsub=   0.243603                eta0=  0.0286461         
+       etab=          0 V^-1             u0=    151.331 cm^2/V/sec
+         ua=2.06121e-10 m/V              ub=1.82348e-18 (m/V)^2 
+         uc=-8.97321e-12 V^-1           vsat=      99156 m/sec   
+         a1=          0 v^-1             a2=          1         
+      delta=       0.01 V              rdsw=    2307.25 ohm-um  
+       prwg=     -0.001 V^-1           prwb=          0 V^-1/2  
+         wr=          1                pclm=    4.35975         
+    pdiblc1=0.000744702             pdiblc2= 0.00425607         
+    pdiblcb=          0 V^-1         pscbe1=1.34762e+10 V/m     
+     pscbe2=      5e-09 V/m           drout=  0.0120292         
+       pvag=    3.66979             nfactor=          2         
+       cdsc=0.000659308 f/m^2         cdscb=          0 f/V/m^2 
+      cdscd=          0 f/V/m^2         cit=          0 f/m^2   
+     alpha0=          0 m/V           beta0=         30 V       
+        dlc=4.30928e-09 meter           dwc=5.96223e-08 meter   
+        clc=      1e-07 meter           cle=        0.6         
+       cgso=  2.307e-10 f/m            cgdo=  2.307e-10 f/m     
+       cgbo=          0 f/m            cgsl=          0 f/m     
+       cgdl=          0 f/m          ckappa=        0.6         
+         cf=8.75406e-11 f/m            tnom=     300.15 K       
+        kt1=      -0.11 V              kt1l=          0         
+        kt2=      0.022                 ute=       -1.5         
+        ua1=   4.31e-09 m/V             ub1=  -7.61e-18 (m/V)^2 
+        uc1=   -5.6e-11 m/V^2            at=      33000 m/s     
+        prt=          0         
+        using Berkeley noise model       noiMod=          1         
+       noia=    9.9e+18                noib=       2400         
+       noic=    1.4e-12                  em=    4.1e+07         
+         ef=          1                  af=          1         
+         kf=          0         
+        using Hspice diodes            using ACM 
+        acm=         0                 hdif=         0 meter    
+       ldif=         0 meter             js=         0 amp/m^2  
+        jsw=         0 amp/m            xti=         0          
+          n=         1                   cj=0.00142028 f/m^2    
+         mj=  0.549088                   pb=      0.99 V        
+       cjsw=4.77361e-10 f/m             mjsw=  0.199742          
+        php=      0.99 V               pbsw (not used)           
+     cjgate=4.77361e-10 f/m            cjswg (not used)           
+      mjswg (not used)                 pbswg (not used)           
+      lketa= 0.00602797               wketa= -0.0101398         
+      pvth0= 0.00658707                 pk2= 0.00101159         
+      prdsw=   -93.5582         
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  optimize model parameters        tnom=  25.000 temp=  25.000         
+******  
+*********************************
+***  model name:   0:optmod  ****
+*********************************
+
+    names  values   units     names  values   units     names  values   units
+    -----  ------   -----     -----  ------   -----     -----  ------   -----
+   level=   3.00             relin=   1.00m           relout=   1.00m        
+    grad=   1.00u            close=   1.00               cut=   2.00         
+     max= 600.00k           itropt=  20.00            cendif=   1.00n        
+  difsiz=   1.00m           parmin= 100.00m        
+ 
+
+**warning** both nodes of source     0:vgnd            
+            are connected together
+
+
+*** warning *** pulse rise time is  < or = zero, reset to tstep
+
+
+*** warning *** pulse fall time is  < or = zero, reset to tstep
+
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.pa1                                            
+
+
+
+entering lmopt 
+  parm names init guess, lower, upper bounds
+setup                   0.            0.        1.5000E-09        0.    
+**warning** negative-mos conductance =     9:m0               iter=   38
+vds,vgs,vbs =      -251.          2.97            0.    
+ gm,gds,gmbs,ids=      25.0         0.135        -4.823E-02     0.159    
+bisec-opt.  iter =   1 xlo =        0.      xhi =   1.50000E-09
+                         x =        0.     xnew =   1.50000E-09
+                       err =   0.97437    
+
+bisec-opt.  iter =   2 xlo =        0.      xhi =   1.50000E-09
+                         x =   1.50000E-09 xnew =   7.50000E-10
+                       err =  -0.15004    
+
+no convergence with standard algorithm,  trying damped pseudo-transient
+
+ *** initial damped pseudo transient completed. ***
+ *** final try started ***
+
+**warning** This was a difficult operating point.
+            You can speed up your simulation by specifying:
+            .OPTION CONVERGE=1 GMINDC=   1.0000E-12
+
+bisec-opt.  iter =   3 xlo =        0.      xhi =   7.50000E-10
+                         x =   7.50000E-10 xnew =   3.75000E-10
+                       err =  -4.57237E-02
+
+bisec-opt.  iter =   4 xlo =   3.75000E-10  xhi =   7.50000E-10
+                         x =   3.75000E-10 xnew =   5.62500E-10
+                       err =   0.97377    
+
+bisec-opt.  iter =   5 xlo =   5.62500E-10  xhi =   7.50000E-10
+                         x =   5.62500E-10 xnew =   6.56250E-10
+                       err =   0.92646    
+
+bisec-opt.  iter =   6 xlo =   6.56250E-10  xhi =   7.50000E-10
+                         x =   6.56250E-10 xnew =   7.03125E-10
+                       err =   0.79150    
+
+bisec-opt.  iter =   7 xlo =   7.03125E-10  xhi =   7.50000E-10
+                         x =   7.03125E-10 xnew =   7.26563E-10
+                       err =   0.45430    
+
+bisec-opt.  iter =   8 xlo =   7.26563E-10  xhi =   7.50000E-10
+                         x =   7.26563E-10 xnew =   7.38281E-10
+                       err =   0.13466    
+
+bisec-opt.  iter =   9 xlo =   7.38281E-10  xhi =   7.50000E-10
+                         x =   7.38281E-10 xnew =   7.44141E-10
+                       err =   1.56867E-02
+
+bisec-opt.  iter =  10 xlo =   7.38281E-10  xhi =   7.44141E-10
+                         x =   7.44141E-10 xnew =   7.41211E-10
+                       err =  -2.14602E-02
+
+bisec-opt.  iter =  11 xlo =   7.38281E-10  xhi =   7.41211E-10
+                         x =   7.41211E-10 xnew =   7.39746E-10
+                       err =  -4.73650E-03
+
+bisec-opt.  iter =  12 xlo =   7.39746E-10  xhi =   7.41211E-10
+                         x =   7.39746E-10 xnew =   7.40479E-10
+                       err =   5.07638E-03
+
+bisec-opt.  iter =  13 xlo =   7.40479E-10  xhi =   7.41211E-10
+                         x =   7.40479E-10 xnew =   7.40845E-10
+                       err =   7.32195E-05
+
+bisec-opt.  iter =  14 xlo =   7.40479E-10  xhi =   7.40845E-10
+                         x =   7.40845E-10 xnew =   7.40662E-10
+                       err =  -2.35550E-03
+
+bisec-opt.  iter =  15 xlo =   7.40479E-10  xhi =   7.40662E-10
+                         x =   7.40662E-10 xnew =   7.40570E-10
+                       err =  -1.14714E-03
+
+bisec-opt.  iter =  16 xlo =   7.40479E-10  xhi =   7.40570E-10
+                         x =   7.40570E-10 xnew =   7.40524E-10
+                       err =  -5.38468E-04
+
+         optimization completed, the condition
+         relin =  1.0000E-03 is satisfied
+
+         optimization completed, the condition
+         relout =  1.0000E-03 is satisfied
+
+
+**** optimized parameters optsetup        
+
+.param setup         = 740.5701p      
+
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  operating point information      tnom=  25.000 temp= 100.000         
+******  
+***** operating point status is voltage   simulation time is     0.     
+    node    =voltage       node    =voltage       node    =voltage
+
+
++ 0:ce      =   2.9700   0:clk     =   0.       0:d       =   6.7627n
++ 0:diff_1  =   2.9700   0:q       =   1.3476   0:vce     =   2.9700 
++ 0:vclk    =   0.       0:vd      =   0.       0:vdd     =   2.9700 
++ 1:in1     =   2.9700   1:in2     =   6.7627n  1:nc1     =   6.7627n
++ 2:out1    =   2.9700   3:out1    =   0.       4:d0      =  13.7332n
++ 5:in1     =   2.9700   6:min     =  17.6588n  6:mout    =   2.9700 
++ 6:s       =   1.3986   6:s_n     =   1.3476   7:n1      =  17.9459n
++ 7:out_n   =   2.9700   7:s0_n    =  11.3427n
+
+
+
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.tr2                                            
+
+******  
+*      $id$                                                                   
+ ******  transient analysis               tnom=  25.000 temp= 100.000         
+******  
+  setup_lh        =  5.3364E-10  targ=  7.1287E-09   trig=  6.5950E-09
+  clkslew         =  7.8956E-11  targ=  7.1852E-09   trig=  7.1063E-09
+  vcrit           =  5.9272E-01
+  optpass         =  8.0043E-01
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.tr3                                            
+
+******  
+*      $id$                                                                   
+ ******  transient analysis               tnom=  25.000 temp= 100.000         
+******  
+  setup_lh        =  5.3364E-10  targ=  7.1287E-09   trig=  6.5950E-09
+  clkslew         =  7.8956E-11  targ=  7.1852E-09   trig=  7.1063E-09
+  vcrit           =  5.9272E-01
+  optpass         =  8.0043E-01
+  clk_q           =  4.9020E-10  targ=  7.6189E-09   trig=  7.1287E-09
+
+         ***** job concluded
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  job statistics summary           tnom=  25.000 temp= 100.000         
+******  
+
+          total memory used        315 kbytes
+
+ # nodes =    24 # elements=    49
+ # diodes=     0 # bjts    =     0 # jfets   =     0 # mosfets =    32
+
+    analysis      time      # points  tot. iter  conv.iter
+
+    op point          1.33         1       561
+    transient        16.42      2401     23351     10092 rev=  393
+    readin            0.06
+    errchk            0.02
+    setup             0.00
+    output            0.01
+          total cpu time         17.07 seconds
+              job started at  03:10:44  01/09/2000
+              job ended   at  03:11:19  01/09/2000
+
+
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+                                                                              
+ ******    alter processing listing       tnom=  25.000 temp= 100.000         
+******  
+.param slewrate = '1.2e-10'
+.alter
+$ alter processing continues $
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  circuit name directory                                               
+******  
+circuit number to circuit name directory
+number  circuitname                   definition        multiplier
+    0 main circuit
+    1 xdbuf.                          ebuffer            1.00 
+    2 xcebuf.                         slewbuffer         1.00 
+    3 xclkbuf.                        slewbuffer         1.00 
+    4 xflop.                          dffce_2x           1.00 
+    5 xdbuf.xload1.                   buffer             3.00 
+    6 xflop.xdff.                     dff_2x             1.00 
+    7 xflop.xmux2.                    mux2               1.00 
+    8 xflop.xdff.x1.                  xgate              1.00 
+    9 xflop.xdff.x2.                  inv                1.00 
+   10 xflop.xdff.x3.                  inv                1.00 
+   11 xflop.xdff.x4.                  xgate              1.00 
+   12 xflop.xdff.x5.                  inv                1.00 
+   13 xflop.xdff.x6.                  inv                1.00 
+   14 xflop.xdff.x7.                  inv                1.00 
+   15 xflop.xmux2.x0.                 xgate              1.00 
+   16 xflop.xmux2.x1.                 xgate              1.00 
+   17 xflop.xmux2.x2.                 inv                1.00 
+   18 xflop.xmux2.x3.                 inv                1.00 
+   19 xflop.xmux2.x4.                 inv                1.00 
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  mos   model parameters           tnom=  25.000 temp=  25.000         
+******  
+***************************************************************************
+***        model parameters  model name:   0:nch      model type:nmos   ***
+***************************************************************************
+
+  *** general parameters ***
+   deriv=   0.           
+
+  ***  level 49  model parameters  ***
+
+     hspver=       98.2               level=         49         
+    version=        3.1            paramchk=          0         
+     apwarn=          1             binUnit=          1         
+     capMod=          2               xpart=          1         
+     mobMod=          1              nqsMod=          0         
+        elm=          5            sfvtflag=          0         
+        tox=    7.6e-09 meter            xj=    1.5e-07 meter   
+    binflag=          0                lmin=          0 meter   
+       lmax=          0 meter          wmin=          0 meter   
+       wmax=          0 meter          lref=          0 meter   
+       wref=          0 meter          lint=1.73552e-09 meter   
+       wint=7.18696e-08 meter         lmult=          1         
+      wmult=          1                  ll=          0         
+        lln=          1                  lw=          0         
+        lwn=          1                 lwl=          0         
+         wl=          0                 wln=          1         
+         ww=          0                 wwn=          1         
+        wwl=          0                 dwg=-1.71297e-08 m/V     
+        dwb=5.85169e-09 m/V^1/2          a0=    1.13562         
+        ags=   0.281037 V^-1             b0=2.84439e-07 meter   
+         b1=      5e-06 meter          keta= -0.0078181 V^-1    
+       voff=  -0.132935 V             ngate=          0 cm^-3   
+        vbx=          0 V               vbm=         -3 V       
+         xt=   1.55e-07 meter          vth0=   0.496445 V       
+        nch=    1.7e+17 cm^-3          nsub=      6e+16 cm^-3   
+        nlx= 2.8948e-07 meter        gamma1=          0 V^-1/2  
+     gamma2=          0 V^-1/2           k1=   0.530777 V^1/2   
+         k2=  0.0199705                  k3=   0.296364         
+        k3b=   0.201216 V^-1             w0=2.83632e-06 meter   
+       dvt0=   0.112017                dvt1=   0.245397         
+       dvt2=  -0.171915 V^-1          dvt0w=          0 meter^-1
+      dvt1w=    5.3e+06 meter^-1      dvt2w=     -0.032 V^-1    
+       dsub=  0.0257957                eta0= 0.00212832         
+       etab=          0 V^-1             u0=    444.938 cm^2/V/sec
+         ua=2.92128e-10 m/V              ub=1.77328e-18 (m/V)^2 
+         uc= 7.0679e-11 V^-1           vsat=     113078 m/sec   
+         a1=          0 v^-1             a2=          1         
+      delta=       0.01 V              rdsw=     925.27 ohm-um  
+       prwg=     -0.001 V^-1           prwb=     -0.001 V^-1/2  
+         wr=          1                pclm=   0.676631         
+    pdiblc1=          1             pdiblc2= 0.00178742         
+    pdiblcb=          0 V^-1         pscbe1=6.97348e+09 V/m     
+     pscbe2=1.46235e-07 V/m           drout=   0.787354         
+       pvag=       0.05             nfactor=   0.571097         
+       cdsc=0.000860723 f/m^2         cdscb=          0 f/V/m^2 
+      cdscd=          0 f/V/m^2         cit=          0 f/m^2   
+     alpha0=          0 m/V           beta0=         30 V       
+        dlc=1.73552e-09 meter           dwc=7.18696e-08 meter   
+        clc=      1e-07 meter           cle=        0.6         
+       cgso=   1.96e-10 f/m            cgdo=   1.96e-10 f/m     
+       cgbo=          0 f/m            cgsl=          0 f/m     
+       cgdl=          0 f/m          ckappa=        0.6         
+         cf=8.75406e-11 f/m            tnom=     300.15 K       
+        kt1=      -0.11 V              kt1l=          0         
+        kt2=      0.022                 ute=       -1.5         
+        ua1=   4.31e-09 m/V             ub1=  -7.61e-18 (m/V)^2 
+        uc1=   -5.6e-11 m/V^2            at=      33000 m/s     
+        prt=          0         
+        using Berkeley noise model       noiMod=          1         
+       noia=      1e+20                noib=      50000         
+       noic=   -1.4e-12                  em=    4.1e+07         
+         ef=          1                  af=          1         
+         kf=          0         
+        using Hspice diodes            using ACM 
+        acm=         0                 hdif=         0 meter    
+       ldif=         0 meter             js=         0 amp/m^2  
+        jsw=         0 amp/m            xti=         0          
+          n=         1                   cj=0.000927696 f/m^2    
+         mj=   0.35577                   pb=  0.815796 V        
+       cjsw=3.18106e-10 f/m             mjsw=       0.1          
+        php=  0.815796 V               pbsw (not used)           
+     cjgate=3.18106e-10 f/m            cjswg (not used)           
+      mjswg (not used)                 pbswg (not used)           
+      lketa= -0.0129496               wketa=-0.000764319         
+      pvth0= -0.0252481                 pk2=-0.00480537         
+      prdsw=   -96.4503         
+***************************************************************************
+***        model parameters  model name:   0:pch      model type:pmos   ***
+***************************************************************************
+
+  *** general parameters ***
+   deriv=   0.           
+
+  ***  level 49  model parameters  ***
+
+     hspver=       98.2               level=         49         
+    version=        3.1            paramchk=          0         
+     apwarn=          1             binUnit=          1         
+     capMod=          2               xpart=          1         
+     mobMod=          1              nqsMod=          0         
+        elm=          5            sfvtflag=          0         
+        tox=    7.6e-09 meter            xj=    1.5e-07 meter   
+    binflag=          0                lmin=          0 meter   
+       lmax=          0 meter          wmin=          0 meter   
+       wmax=          0 meter          lref=          0 meter   
+       wref=          0 meter          lint=4.30928e-09 meter   
+       wint=5.96223e-08 meter         lmult=          1         
+      wmult=          1                  ll=          0         
+        lln=          1                  lw=          0         
+        lwn=          1                 lwl=          0         
+         wl=          0                 wln=          1         
+         ww=          0                 wwn=          1         
+        wwl=          0                 dwg=-1.5962e-08 m/V     
+        dwb=1.37892e-08 m/V^1/2          a0=    1.12101         
+        ags=   0.396195 V^-1             b0=6.49314e-07 meter   
+         b1=4.27322e-06 meter          keta=   -0.00927 V^-1    
+       voff=      -0.15 V             ngate=          0 cm^-3   
+        vbx=          0 V               vbm=         -3 V       
+         xt=   1.55e-07 meter          vth0=  -0.663659 V       
+        nch=    1.7e+17 cm^-3          nsub=      6e+16 cm^-3   
+        nlx=1.51028e-07 meter        gamma1=          0 V^-1/2  
+     gamma2=          0 V^-1/2           k1=   0.456478 V^1/2   
+         k2=  -0.019447                  k3=    39.3829         
+        k3b=    -2.8931 V^-1             w0=2.65558e-06 meter   
+       dvt0=    1.17446                dvt1=   0.763113         
+       dvt2=  -0.103517 V^-1          dvt0w=          0 meter^-1
+      dvt1w=    5.3e+06 meter^-1      dvt2w=     -0.032 V^-1    
+       dsub=   0.243603                eta0=  0.0286461         
+       etab=          0 V^-1             u0=    151.331 cm^2/V/sec
+         ua=2.06121e-10 m/V              ub=1.82348e-18 (m/V)^2 
+         uc=-8.97321e-12 V^-1           vsat=      99156 m/sec   
+         a1=          0 v^-1             a2=          1         
+      delta=       0.01 V              rdsw=    2307.25 ohm-um  
+       prwg=     -0.001 V^-1           prwb=          0 V^-1/2  
+         wr=          1                pclm=    4.35975         
+    pdiblc1=0.000744702             pdiblc2= 0.00425607         
+    pdiblcb=          0 V^-1         pscbe1=1.34762e+10 V/m     
+     pscbe2=      5e-09 V/m           drout=  0.0120292         
+       pvag=    3.66979             nfactor=          2         
+       cdsc=0.000659308 f/m^2         cdscb=          0 f/V/m^2 
+      cdscd=          0 f/V/m^2         cit=          0 f/m^2   
+     alpha0=          0 m/V           beta0=         30 V       
+        dlc=4.30928e-09 meter           dwc=5.96223e-08 meter   
+        clc=      1e-07 meter           cle=        0.6         
+       cgso=  2.307e-10 f/m            cgdo=  2.307e-10 f/m     
+       cgbo=          0 f/m            cgsl=          0 f/m     
+       cgdl=          0 f/m          ckappa=        0.6         
+         cf=8.75406e-11 f/m            tnom=     300.15 K       
+        kt1=      -0.11 V              kt1l=          0         
+        kt2=      0.022                 ute=       -1.5         
+        ua1=   4.31e-09 m/V             ub1=  -7.61e-18 (m/V)^2 
+        uc1=   -5.6e-11 m/V^2            at=      33000 m/s     
+        prt=          0         
+        using Berkeley noise model       noiMod=          1         
+       noia=    9.9e+18                noib=       2400         
+       noic=    1.4e-12                  em=    4.1e+07         
+         ef=          1                  af=          1         
+         kf=          0         
+        using Hspice diodes            using ACM 
+        acm=         0                 hdif=         0 meter    
+       ldif=         0 meter             js=         0 amp/m^2  
+        jsw=         0 amp/m            xti=         0          
+          n=         1                   cj=0.00142028 f/m^2    
+         mj=  0.549088                   pb=      0.99 V        
+       cjsw=4.77361e-10 f/m             mjsw=  0.199742          
+        php=      0.99 V               pbsw (not used)           
+     cjgate=4.77361e-10 f/m            cjswg (not used)           
+      mjswg (not used)                 pbswg (not used)           
+      lketa= 0.00602797               wketa= -0.0101398         
+      pvth0= 0.00658707                 pk2= 0.00101159         
+      prdsw=   -93.5582         
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  optimize model parameters        tnom=  25.000 temp=  25.000         
+******  
+*********************************
+***  model name:   0:optmod  ****
+*********************************
+
+    names  values   units     names  values   units     names  values   units
+    -----  ------   -----     -----  ------   -----     -----  ------   -----
+   level=   3.00             relin=   1.00m           relout=   1.00m        
+    grad=   1.00u            close=   1.00               cut=   2.00         
+     max= 600.00k           itropt=  20.00            cendif=   1.00n        
+  difsiz=   1.00m           parmin= 100.00m        
+ 
+
+**warning** both nodes of source     0:vgnd            
+            are connected together
+
+
+*** warning *** pulse rise time is  < or = zero, reset to tstep
+
+
+*** warning *** pulse fall time is  < or = zero, reset to tstep
+
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.pa2                                            
+
+
+
+entering lmopt 
+  parm names init guess, lower, upper bounds
+setup                   0.            0.        1.5000E-09        0.    
+**warning** negative-mos conductance =     9:m0               iter=   38
+vds,vgs,vbs =      -251.          2.97            0.    
+ gm,gds,gmbs,ids=      25.0         0.135        -4.823E-02     0.159    
+bisec-opt.  iter =   1 xlo =        0.      xhi =   1.50000E-09
+                         x =        0.     xnew =   1.50000E-09
+                       err =   0.98220    
+
+bisec-opt.  iter =   2 xlo =        0.      xhi =   1.50000E-09
+                         x =   1.50000E-09 xnew =   7.50000E-10
+                       err =  -0.14904    
+
+no convergence with standard algorithm,  trying damped pseudo-transient
+
+ *** initial damped pseudo transient completed. ***
+ *** final try started ***
+
+**warning** This was a difficult operating point.
+            You can speed up your simulation by specifying:
+            .OPTION CONVERGE=1 GMINDC=   1.0000E-12
+
+bisec-opt.  iter =   3 xlo =        0.      xhi =   7.50000E-10
+                         x =   7.50000E-10 xnew =   3.75000E-10
+                       err =  -2.22422E-02
+
+bisec-opt.  iter =   4 xlo =   3.75000E-10  xhi =   7.50000E-10
+                         x =   3.75000E-10 xnew =   5.62500E-10
+                       err =   0.98240    
+
+bisec-opt.  iter =   5 xlo =   5.62500E-10  xhi =   7.50000E-10
+                         x =   5.62500E-10 xnew =   6.56250E-10
+                       err =   0.95152    
+
+bisec-opt.  iter =   6 xlo =   6.56250E-10  xhi =   7.50000E-10
+                         x =   6.56250E-10 xnew =   7.03125E-10
+                       err =   0.85461    
+
+bisec-opt.  iter =   7 xlo =   7.03125E-10  xhi =   7.50000E-10
+                         x =   7.03125E-10 xnew =   7.26563E-10
+                       err =   0.68206    
+
+bisec-opt.  iter =   8 xlo =   7.26563E-10  xhi =   7.50000E-10
+                         x =   7.26563E-10 xnew =   7.38281E-10
+                       err =   0.28015    
+
+bisec-opt.  iter =   9 xlo =   7.38281E-10  xhi =   7.50000E-10
+                         x =   7.38281E-10 xnew =   7.44141E-10
+                       err =   8.19848E-02
+
+bisec-opt.  iter =  10 xlo =   7.44141E-10  xhi =   7.50000E-10
+                         x =   7.44141E-10 xnew =   7.47070E-10
+                       err =   1.73767E-02
+
+bisec-opt.  iter =  11 xlo =   7.44141E-10  xhi =   7.47070E-10
+                         x =   7.47070E-10 xnew =   7.45605E-10
+                       err =  -4.59294E-03
+
+bisec-opt.  iter =  12 xlo =   7.45605E-10  xhi =   7.47070E-10
+                         x =   7.45605E-10 xnew =   7.46338E-10
+                       err =   5.75477E-03
+
+bisec-opt.  iter =  13 xlo =   7.46338E-10  xhi =   7.47070E-10
+                         x =   7.46338E-10 xnew =   7.46704E-10
+                       err =   6.16051E-04
+
+bisec-opt.  iter =  14 xlo =   7.46338E-10  xhi =   7.46704E-10
+                         x =   7.46704E-10 xnew =   7.46521E-10
+                       err =  -1.93403E-03
+
+bisec-opt.  iter =  15 xlo =   7.46338E-10  xhi =   7.46521E-10
+                         x =   7.46521E-10 xnew =   7.46429E-10
+                       err =  -6.67596E-04
+
+         optimization completed, the condition
+         relin =  1.0000E-03 is satisfied
+
+         optimization completed, the condition
+         relout =  1.0000E-03 is satisfied
+
+
+**** optimized parameters optsetup        
+
+.param setup         = 746.5210p      
+
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  operating point information      tnom=  25.000 temp= 100.000         
+******  
+***** operating point status is voltage   simulation time is     0.     
+    node    =voltage       node    =voltage       node    =voltage
+
+
++ 0:ce      =   2.9700   0:clk     =   0.       0:d       =   6.7627n
++ 0:diff_1  =   2.9700   0:q       =   1.3476   0:vce     =   2.9700 
++ 0:vclk    =   0.       0:vd      =   0.       0:vdd     =   2.9700 
++ 1:in1     =   2.9700   1:in2     =   6.7627n  1:nc1     =   6.7627n
++ 2:out1    =   2.9700   3:out1    =   0.       4:d0      =  13.7332n
++ 5:in1     =   2.9700   6:min     =  17.6588n  6:mout    =   2.9700 
++ 6:s       =   1.3986   6:s_n     =   1.3476   7:n1      =  17.9459n
++ 7:out_n   =   2.9700   7:s0_n    =  11.3427n
+
+
+
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.tr4                                            
+
+******  
+*      $id$                                                                   
+ ******  transient analysis               tnom=  25.000 temp= 100.000         
+******  
+  setup_lh        =  5.3635E-10  targ=  7.1412E-09   trig=  6.6048E-09
+  clkslew         =  1.2021E-10  targ=  7.2284E-09   trig=  7.1082E-09
+  vcrit           =  5.9241E-01
+  optpass         =  8.0053E-01
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.tr5                                            
+
+******  
+*      $id$                                                                   
+ ******  transient analysis               tnom=  25.000 temp= 100.000         
+******  
+  setup_lh        =  5.3635E-10  targ=  7.1412E-09   trig=  6.6048E-09
+  clkslew         =  1.2021E-10  targ=  7.2284E-09   trig=  7.1082E-09
+  vcrit           =  5.9241E-01
+  optpass         =  8.0053E-01
+  clk_q           =  5.1134E-10  targ=  7.6525E-09   trig=  7.1412E-09
+
+         ***** job concluded
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  job statistics summary           tnom=  25.000 temp= 100.000         
+******  
+
+          total memory used        315 kbytes
+
+ # nodes =    24 # elements=    49
+ # diodes=     0 # bjts    =     0 # jfets   =     0 # mosfets =    32
+
+    analysis      time      # points  tot. iter  conv.iter
+
+    op point          1.25         1       558
+    transient        14.67      2401     21717      9366 rev=  315
+    readin            0.06
+    errchk            0.02
+    setup             0.00
+    output            0.01
+          total cpu time         15.31 seconds
+              job started at  03:10:44  01/09/2000
+              job ended   at  03:11:34  01/09/2000
+
+
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+                                                                              
+ ******    alter processing listing       tnom=  25.000 temp= 100.000         
+******  
+.param slewrate = '1.600002e-10'
+.alter
+$ alter processing continues $
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  circuit name directory                                               
+******  
+circuit number to circuit name directory
+number  circuitname                   definition        multiplier
+    0 main circuit
+    1 xdbuf.                          ebuffer            1.00 
+    2 xcebuf.                         slewbuffer         1.00 
+    3 xclkbuf.                        slewbuffer         1.00 
+    4 xflop.                          dffce_2x           1.00 
+    5 xdbuf.xload1.                   buffer             3.00 
+    6 xflop.xdff.                     dff_2x             1.00 
+    7 xflop.xmux2.                    mux2               1.00 
+    8 xflop.xdff.x1.                  xgate              1.00 
+    9 xflop.xdff.x2.                  inv                1.00 
+   10 xflop.xdff.x3.                  inv                1.00 
+   11 xflop.xdff.x4.                  xgate              1.00 
+   12 xflop.xdff.x5.                  inv                1.00 
+   13 xflop.xdff.x6.                  inv                1.00 
+   14 xflop.xdff.x7.                  inv                1.00 
+   15 xflop.xmux2.x0.                 xgate              1.00 
+   16 xflop.xmux2.x1.                 xgate              1.00 
+   17 xflop.xmux2.x2.                 inv                1.00 
+   18 xflop.xmux2.x3.                 inv                1.00 
+   19 xflop.xmux2.x4.                 inv                1.00 
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  mos   model parameters           tnom=  25.000 temp=  25.000         
+******  
+***************************************************************************
+***        model parameters  model name:   0:nch      model type:nmos   ***
+***************************************************************************
+
+  *** general parameters ***
+   deriv=   0.           
+
+  ***  level 49  model parameters  ***
+
+     hspver=       98.2               level=         49         
+    version=        3.1            paramchk=          0         
+     apwarn=          1             binUnit=          1         
+     capMod=          2               xpart=          1         
+     mobMod=          1              nqsMod=          0         
+        elm=          5            sfvtflag=          0         
+        tox=    7.6e-09 meter            xj=    1.5e-07 meter   
+    binflag=          0                lmin=          0 meter   
+       lmax=          0 meter          wmin=          0 meter   
+       wmax=          0 meter          lref=          0 meter   
+       wref=          0 meter          lint=1.73552e-09 meter   
+       wint=7.18696e-08 meter         lmult=          1         
+      wmult=          1                  ll=          0         
+        lln=          1                  lw=          0         
+        lwn=          1                 lwl=          0         
+         wl=          0                 wln=          1         
+         ww=          0                 wwn=          1         
+        wwl=          0                 dwg=-1.71297e-08 m/V     
+        dwb=5.85169e-09 m/V^1/2          a0=    1.13562         
+        ags=   0.281037 V^-1             b0=2.84439e-07 meter   
+         b1=      5e-06 meter          keta= -0.0078181 V^-1    
+       voff=  -0.132935 V             ngate=          0 cm^-3   
+        vbx=          0 V               vbm=         -3 V       
+         xt=   1.55e-07 meter          vth0=   0.496445 V       
+        nch=    1.7e+17 cm^-3          nsub=      6e+16 cm^-3   
+        nlx= 2.8948e-07 meter        gamma1=          0 V^-1/2  
+     gamma2=          0 V^-1/2           k1=   0.530777 V^1/2   
+         k2=  0.0199705                  k3=   0.296364         
+        k3b=   0.201216 V^-1             w0=2.83632e-06 meter   
+       dvt0=   0.112017                dvt1=   0.245397         
+       dvt2=  -0.171915 V^-1          dvt0w=          0 meter^-1
+      dvt1w=    5.3e+06 meter^-1      dvt2w=     -0.032 V^-1    
+       dsub=  0.0257957                eta0= 0.00212832         
+       etab=          0 V^-1             u0=    444.938 cm^2/V/sec
+         ua=2.92128e-10 m/V              ub=1.77328e-18 (m/V)^2 
+         uc= 7.0679e-11 V^-1           vsat=     113078 m/sec   
+         a1=          0 v^-1             a2=          1         
+      delta=       0.01 V              rdsw=     925.27 ohm-um  
+       prwg=     -0.001 V^-1           prwb=     -0.001 V^-1/2  
+         wr=          1                pclm=   0.676631         
+    pdiblc1=          1             pdiblc2= 0.00178742         
+    pdiblcb=          0 V^-1         pscbe1=6.97348e+09 V/m     
+     pscbe2=1.46235e-07 V/m           drout=   0.787354         
+       pvag=       0.05             nfactor=   0.571097         
+       cdsc=0.000860723 f/m^2         cdscb=          0 f/V/m^2 
+      cdscd=          0 f/V/m^2         cit=          0 f/m^2   
+     alpha0=          0 m/V           beta0=         30 V       
+        dlc=1.73552e-09 meter           dwc=7.18696e-08 meter   
+        clc=      1e-07 meter           cle=        0.6         
+       cgso=   1.96e-10 f/m            cgdo=   1.96e-10 f/m     
+       cgbo=          0 f/m            cgsl=          0 f/m     
+       cgdl=          0 f/m          ckappa=        0.6         
+         cf=8.75406e-11 f/m            tnom=     300.15 K       
+        kt1=      -0.11 V              kt1l=          0         
+        kt2=      0.022                 ute=       -1.5         
+        ua1=   4.31e-09 m/V             ub1=  -7.61e-18 (m/V)^2 
+        uc1=   -5.6e-11 m/V^2            at=      33000 m/s     
+        prt=          0         
+        using Berkeley noise model       noiMod=          1         
+       noia=      1e+20                noib=      50000         
+       noic=   -1.4e-12                  em=    4.1e+07         
+         ef=          1                  af=          1         
+         kf=          0         
+        using Hspice diodes            using ACM 
+        acm=         0                 hdif=         0 meter    
+       ldif=         0 meter             js=         0 amp/m^2  
+        jsw=         0 amp/m            xti=         0          
+          n=         1                   cj=0.000927696 f/m^2    
+         mj=   0.35577                   pb=  0.815796 V        
+       cjsw=3.18106e-10 f/m             mjsw=       0.1          
+        php=  0.815796 V               pbsw (not used)           
+     cjgate=3.18106e-10 f/m            cjswg (not used)           
+      mjswg (not used)                 pbswg (not used)           
+      lketa= -0.0129496               wketa=-0.000764319         
+      pvth0= -0.0252481                 pk2=-0.00480537         
+      prdsw=   -96.4503         
+***************************************************************************
+***        model parameters  model name:   0:pch      model type:pmos   ***
+***************************************************************************
+
+  *** general parameters ***
+   deriv=   0.           
+
+  ***  level 49  model parameters  ***
+
+     hspver=       98.2               level=         49         
+    version=        3.1            paramchk=          0         
+     apwarn=          1             binUnit=          1         
+     capMod=          2               xpart=          1         
+     mobMod=          1              nqsMod=          0         
+        elm=          5            sfvtflag=          0         
+        tox=    7.6e-09 meter            xj=    1.5e-07 meter   
+    binflag=          0                lmin=          0 meter   
+       lmax=          0 meter          wmin=          0 meter   
+       wmax=          0 meter          lref=          0 meter   
+       wref=          0 meter          lint=4.30928e-09 meter   
+       wint=5.96223e-08 meter         lmult=          1         
+      wmult=          1                  ll=          0         
+        lln=          1                  lw=          0         
+        lwn=          1                 lwl=          0         
+         wl=          0                 wln=          1         
+         ww=          0                 wwn=          1         
+        wwl=          0                 dwg=-1.5962e-08 m/V     
+        dwb=1.37892e-08 m/V^1/2          a0=    1.12101         
+        ags=   0.396195 V^-1             b0=6.49314e-07 meter   
+         b1=4.27322e-06 meter          keta=   -0.00927 V^-1    
+       voff=      -0.15 V             ngate=          0 cm^-3   
+        vbx=          0 V               vbm=         -3 V       
+         xt=   1.55e-07 meter          vth0=  -0.663659 V       
+        nch=    1.7e+17 cm^-3          nsub=      6e+16 cm^-3   
+        nlx=1.51028e-07 meter        gamma1=          0 V^-1/2  
+     gamma2=          0 V^-1/2           k1=   0.456478 V^1/2   
+         k2=  -0.019447                  k3=    39.3829         
+        k3b=    -2.8931 V^-1             w0=2.65558e-06 meter   
+       dvt0=    1.17446                dvt1=   0.763113         
+       dvt2=  -0.103517 V^-1          dvt0w=          0 meter^-1
+      dvt1w=    5.3e+06 meter^-1      dvt2w=     -0.032 V^-1    
+       dsub=   0.243603                eta0=  0.0286461         
+       etab=          0 V^-1             u0=    151.331 cm^2/V/sec
+         ua=2.06121e-10 m/V              ub=1.82348e-18 (m/V)^2 
+         uc=-8.97321e-12 V^-1           vsat=      99156 m/sec   
+         a1=          0 v^-1             a2=          1         
+      delta=       0.01 V              rdsw=    2307.25 ohm-um  
+       prwg=     -0.001 V^-1           prwb=          0 V^-1/2  
+         wr=          1                pclm=    4.35975         
+    pdiblc1=0.000744702             pdiblc2= 0.00425607         
+    pdiblcb=          0 V^-1         pscbe1=1.34762e+10 V/m     
+     pscbe2=      5e-09 V/m           drout=  0.0120292         
+       pvag=    3.66979             nfactor=          2         
+       cdsc=0.000659308 f/m^2         cdscb=          0 f/V/m^2 
+      cdscd=          0 f/V/m^2         cit=          0 f/m^2   
+     alpha0=          0 m/V           beta0=         30 V       
+        dlc=4.30928e-09 meter           dwc=5.96223e-08 meter   
+        clc=      1e-07 meter           cle=        0.6         
+       cgso=  2.307e-10 f/m            cgdo=  2.307e-10 f/m     
+       cgbo=          0 f/m            cgsl=          0 f/m     
+       cgdl=          0 f/m          ckappa=        0.6         
+         cf=8.75406e-11 f/m            tnom=     300.15 K       
+        kt1=      -0.11 V              kt1l=          0         
+        kt2=      0.022                 ute=       -1.5         
+        ua1=   4.31e-09 m/V             ub1=  -7.61e-18 (m/V)^2 
+        uc1=   -5.6e-11 m/V^2            at=      33000 m/s     
+        prt=          0         
+        using Berkeley noise model       noiMod=          1         
+       noia=    9.9e+18                noib=       2400         
+       noic=    1.4e-12                  em=    4.1e+07         
+         ef=          1                  af=          1         
+         kf=          0         
+        using Hspice diodes            using ACM 
+        acm=         0                 hdif=         0 meter    
+       ldif=         0 meter             js=         0 amp/m^2  
+        jsw=         0 amp/m            xti=         0          
+          n=         1                   cj=0.00142028 f/m^2    
+         mj=  0.549088                   pb=      0.99 V        
+       cjsw=4.77361e-10 f/m             mjsw=  0.199742          
+        php=      0.99 V               pbsw (not used)           
+     cjgate=4.77361e-10 f/m            cjswg (not used)           
+      mjswg (not used)                 pbswg (not used)           
+      lketa= 0.00602797               wketa= -0.0101398         
+      pvth0= 0.00658707                 pk2= 0.00101159         
+      prdsw=   -93.5582         
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  optimize model parameters        tnom=  25.000 temp=  25.000         
+******  
+*********************************
+***  model name:   0:optmod  ****
+*********************************
+
+    names  values   units     names  values   units     names  values   units
+    -----  ------   -----     -----  ------   -----     -----  ------   -----
+   level=   3.00             relin=   1.00m           relout=   1.00m        
+    grad=   1.00u            close=   1.00               cut=   2.00         
+     max= 600.00k           itropt=  20.00            cendif=   1.00n        
+  difsiz=   1.00m           parmin= 100.00m        
+ 
+
+**warning** both nodes of source     0:vgnd            
+            are connected together
+
+
+*** warning *** pulse rise time is  < or = zero, reset to tstep
+
+
+*** warning *** pulse fall time is  < or = zero, reset to tstep
+
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.pa3                                            
+
+
+
+entering lmopt 
+  parm names init guess, lower, upper bounds
+setup                   0.            0.        1.5000E-09        0.    
+**warning** negative-mos conductance =     9:m0               iter=   38
+vds,vgs,vbs =      -251.          2.97            0.    
+ gm,gds,gmbs,ids=      25.0         0.135        -4.823E-02     0.159    
+bisec-opt.  iter =   1 xlo =        0.      xhi =   1.50000E-09
+                         x =        0.     xnew =   1.50000E-09
+                       err =   0.98637    
+
+bisec-opt.  iter =   2 xlo =        0.      xhi =   1.50000E-09
+                         x =   1.50000E-09 xnew =   7.50000E-10
+                       err =  -0.15088    
+
+no convergence with standard algorithm,  trying damped pseudo-transient
+
+ *** initial damped pseudo transient completed. ***
+ *** final try started ***
+
+**warning** This was a difficult operating point.
+            You can speed up your simulation by specifying:
+            .OPTION CONVERGE=1 GMINDC=   1.0000E-12
+
+bisec-opt.  iter =   3 xlo =   7.50000E-10  xhi =   1.50000E-09
+                         x =   7.50000E-10 xnew =   1.12500E-09
+                       err =   7.70473E-03
+
+bisec-opt.  iter =   4 xlo =   7.50000E-10  xhi =   1.12500E-09
+                         x =   1.12500E-09 xnew =   9.37500E-10
+                       err =  -0.15067    
+
+bisec-opt.  iter =   5 xlo =   7.50000E-10  xhi =   9.37500E-10
+                         x =   9.37500E-10 xnew =   8.43750E-10
+                       err =  -0.14796    
+
+bisec-opt.  iter =   6 xlo =   7.50000E-10  xhi =   8.43750E-10
+                         x =   8.43750E-10 xnew =   7.96875E-10
+                       err =  -0.13737    
+
+bisec-opt.  iter =   7 xlo =   7.50000E-10  xhi =   7.96875E-10
+                         x =   7.96875E-10 xnew =   7.73438E-10
+                       err =  -0.11881    
+
+bisec-opt.  iter =   8 xlo =   7.50000E-10  xhi =   7.73438E-10
+                         x =   7.73438E-10 xnew =   7.61719E-10
+                       err =  -9.25752E-02
+
+bisec-opt.  iter =   9 xlo =   7.50000E-10  xhi =   7.61719E-10
+                         x =   7.61719E-10 xnew =   7.55859E-10
+                       err =  -6.18715E-02
+
+bisec-opt.  iter =  10 xlo =   7.50000E-10  xhi =   7.55859E-10
+                         x =   7.55859E-10 xnew =   7.52930E-10
+                       err =  -3.47236E-02
+
+bisec-opt.  iter =  11 xlo =   7.50000E-10  xhi =   7.52930E-10
+                         x =   7.52930E-10 xnew =   7.51465E-10
+                       err =  -1.62116E-02
+
+bisec-opt.  iter =  12 xlo =   7.50000E-10  xhi =   7.51465E-10
+                         x =   7.51465E-10 xnew =   7.50732E-10
+                       err =  -5.09036E-03
+
+bisec-opt.  iter =  13 xlo =   7.50732E-10  xhi =   7.51465E-10
+                         x =   7.50732E-10 xnew =   7.51099E-10
+                       err =   1.07769E-03
+
+bisec-opt.  iter =  14 xlo =   7.50732E-10  xhi =   7.51099E-10
+                         x =   7.51099E-10 xnew =   7.50916E-10
+                       err =  -2.05776E-03
+
+bisec-opt.  iter =  15 xlo =   7.50732E-10  xhi =   7.50916E-10
+                         x =   7.50916E-10 xnew =   7.50824E-10
+                       err =  -5.04161E-04
+
+         optimization completed, the condition
+         relin =  1.0000E-03 is satisfied
+
+         optimization completed, the condition
+         relout =  1.0000E-03 is satisfied
+
+
+**** optimized parameters optsetup        
+
+.param setup         = 750.9155p      
+
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  operating point information      tnom=  25.000 temp= 100.000         
+******  
+***** operating point status is voltage   simulation time is     0.     
+    node    =voltage       node    =voltage       node    =voltage
+
+
++ 0:ce      =   2.9700   0:clk     =   0.       0:d       =   6.7627n
++ 0:diff_1  =   2.9700   0:q       =   1.3476   0:vce     =   2.9700 
++ 0:vclk    =   0.       0:vd      =   0.       0:vdd     =   2.9700 
++ 1:in1     =   2.9700   1:in2     =   6.7627n  1:nc1     =   6.7627n
++ 2:out1    =   2.9700   3:out1    =   0.       4:d0      =  13.7332n
++ 5:in1     =   2.9700   6:min     =  17.6588n  6:mout    =   2.9700 
++ 6:s       =   1.3986   6:s_n     =   1.3476   7:n1      =  17.9459n
++ 7:out_n   =   2.9700   7:s0_n    =  11.3427n
+
+
+
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.tr6                                            
+
+******  
+*      $id$                                                                   
+ ******  transient analysis               tnom=  25.000 temp= 100.000         
+******  
+  setup_lh        =  5.3876E-10  targ=  7.1532E-09   trig=  6.6144E-09
+  clkslew         =  1.5913E-10  targ=  7.2692E-09   trig=  7.1101E-09
+  vcrit           =  5.9280E-01
+  optpass         =  8.0040E-01
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.tr7                                            
+
+******  
+*      $id$                                                                   
+ ******  transient analysis               tnom=  25.000 temp= 100.000         
+******  
+  setup_lh        =  5.3876E-10  targ=  7.1532E-09   trig=  6.6144E-09
+  clkslew         =  1.5913E-10  targ=  7.2692E-09   trig=  7.1101E-09
+  vcrit           =  5.9280E-01
+  optpass         =  8.0040E-01
+  clk_q           =  5.3298E-10  targ=  7.6862E-09   trig=  7.1532E-09
+
+         ***** job concluded
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  job statistics summary           tnom=  25.000 temp= 100.000         
+******  
+
+          total memory used        315 kbytes
+
+ # nodes =    24 # elements=    49
+ # diodes=     0 # bjts    =     0 # jfets   =     0 # mosfets =    32
+
+    analysis      time      # points  tot. iter  conv.iter
+
+    op point          1.31         1       558
+    transient        15.58      2401     21989      9476 rev=  353
+    readin            0.06
+    errchk            0.02
+    setup             0.00
+    output            0.01
+          total cpu time         16.22 seconds
+              job started at  03:10:44  01/09/2000
+              job ended   at  03:11:51  01/09/2000
+
+
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+                                                                              
+ ******    alter processing listing       tnom=  25.000 temp= 100.000         
+******  
+.param slewrate = '3.19998e-10'
+.end
+$ end of alter processing $
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  circuit name directory                                               
+******  
+circuit number to circuit name directory
+number  circuitname                   definition        multiplier
+    0 main circuit
+    1 xdbuf.                          ebuffer            1.00 
+    2 xcebuf.                         slewbuffer         1.00 
+    3 xclkbuf.                        slewbuffer         1.00 
+    4 xflop.                          dffce_2x           1.00 
+    5 xdbuf.xload1.                   buffer             3.00 
+    6 xflop.xdff.                     dff_2x             1.00 
+    7 xflop.xmux2.                    mux2               1.00 
+    8 xflop.xdff.x1.                  xgate              1.00 
+    9 xflop.xdff.x2.                  inv                1.00 
+   10 xflop.xdff.x3.                  inv                1.00 
+   11 xflop.xdff.x4.                  xgate              1.00 
+   12 xflop.xdff.x5.                  inv                1.00 
+   13 xflop.xdff.x6.                  inv                1.00 
+   14 xflop.xdff.x7.                  inv                1.00 
+   15 xflop.xmux2.x0.                 xgate              1.00 
+   16 xflop.xmux2.x1.                 xgate              1.00 
+   17 xflop.xmux2.x2.                 inv                1.00 
+   18 xflop.xmux2.x3.                 inv                1.00 
+   19 xflop.xmux2.x4.                 inv                1.00 
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  mos   model parameters           tnom=  25.000 temp=  25.000         
+******  
+***************************************************************************
+***        model parameters  model name:   0:nch      model type:nmos   ***
+***************************************************************************
+
+  *** general parameters ***
+   deriv=   0.           
+
+  ***  level 49  model parameters  ***
+
+     hspver=       98.2               level=         49         
+    version=        3.1            paramchk=          0         
+     apwarn=          1             binUnit=          1         
+     capMod=          2               xpart=          1         
+     mobMod=          1              nqsMod=          0         
+        elm=          5            sfvtflag=          0         
+        tox=    7.6e-09 meter            xj=    1.5e-07 meter   
+    binflag=          0                lmin=          0 meter   
+       lmax=          0 meter          wmin=          0 meter   
+       wmax=          0 meter          lref=          0 meter   
+       wref=          0 meter          lint=1.73552e-09 meter   
+       wint=7.18696e-08 meter         lmult=          1         
+      wmult=          1                  ll=          0         
+        lln=          1                  lw=          0         
+        lwn=          1                 lwl=          0         
+         wl=          0                 wln=          1         
+         ww=          0                 wwn=          1         
+        wwl=          0                 dwg=-1.71297e-08 m/V     
+        dwb=5.85169e-09 m/V^1/2          a0=    1.13562         
+        ags=   0.281037 V^-1             b0=2.84439e-07 meter   
+         b1=      5e-06 meter          keta= -0.0078181 V^-1    
+       voff=  -0.132935 V             ngate=          0 cm^-3   
+        vbx=          0 V               vbm=         -3 V       
+         xt=   1.55e-07 meter          vth0=   0.496445 V       
+        nch=    1.7e+17 cm^-3          nsub=      6e+16 cm^-3   
+        nlx= 2.8948e-07 meter        gamma1=          0 V^-1/2  
+     gamma2=          0 V^-1/2           k1=   0.530777 V^1/2   
+         k2=  0.0199705                  k3=   0.296364         
+        k3b=   0.201216 V^-1             w0=2.83632e-06 meter   
+       dvt0=   0.112017                dvt1=   0.245397         
+       dvt2=  -0.171915 V^-1          dvt0w=          0 meter^-1
+      dvt1w=    5.3e+06 meter^-1      dvt2w=     -0.032 V^-1    
+       dsub=  0.0257957                eta0= 0.00212832         
+       etab=          0 V^-1             u0=    444.938 cm^2/V/sec
+         ua=2.92128e-10 m/V              ub=1.77328e-18 (m/V)^2 
+         uc= 7.0679e-11 V^-1           vsat=     113078 m/sec   
+         a1=          0 v^-1             a2=          1         
+      delta=       0.01 V              rdsw=     925.27 ohm-um  
+       prwg=     -0.001 V^-1           prwb=     -0.001 V^-1/2  
+         wr=          1                pclm=   0.676631         
+    pdiblc1=          1             pdiblc2= 0.00178742         
+    pdiblcb=          0 V^-1         pscbe1=6.97348e+09 V/m     
+     pscbe2=1.46235e-07 V/m           drout=   0.787354         
+       pvag=       0.05             nfactor=   0.571097         
+       cdsc=0.000860723 f/m^2         cdscb=          0 f/V/m^2 
+      cdscd=          0 f/V/m^2         cit=          0 f/m^2   
+     alpha0=          0 m/V           beta0=         30 V       
+        dlc=1.73552e-09 meter           dwc=7.18696e-08 meter   
+        clc=      1e-07 meter           cle=        0.6         
+       cgso=   1.96e-10 f/m            cgdo=   1.96e-10 f/m     
+       cgbo=          0 f/m            cgsl=          0 f/m     
+       cgdl=          0 f/m          ckappa=        0.6         
+         cf=8.75406e-11 f/m            tnom=     300.15 K       
+        kt1=      -0.11 V              kt1l=          0         
+        kt2=      0.022                 ute=       -1.5         
+        ua1=   4.31e-09 m/V             ub1=  -7.61e-18 (m/V)^2 
+        uc1=   -5.6e-11 m/V^2            at=      33000 m/s     
+        prt=          0         
+        using Berkeley noise model       noiMod=          1         
+       noia=      1e+20                noib=      50000         
+       noic=   -1.4e-12                  em=    4.1e+07         
+         ef=          1                  af=          1         
+         kf=          0         
+        using Hspice diodes            using ACM 
+        acm=         0                 hdif=         0 meter    
+       ldif=         0 meter             js=         0 amp/m^2  
+        jsw=         0 amp/m            xti=         0          
+          n=         1                   cj=0.000927696 f/m^2    
+         mj=   0.35577                   pb=  0.815796 V        
+       cjsw=3.18106e-10 f/m             mjsw=       0.1          
+        php=  0.815796 V               pbsw (not used)           
+     cjgate=3.18106e-10 f/m            cjswg (not used)           
+      mjswg (not used)                 pbswg (not used)           
+      lketa= -0.0129496               wketa=-0.000764319         
+      pvth0= -0.0252481                 pk2=-0.00480537         
+      prdsw=   -96.4503         
+***************************************************************************
+***        model parameters  model name:   0:pch      model type:pmos   ***
+***************************************************************************
+
+  *** general parameters ***
+   deriv=   0.           
+
+  ***  level 49  model parameters  ***
+
+     hspver=       98.2               level=         49         
+    version=        3.1            paramchk=          0         
+     apwarn=          1             binUnit=          1         
+     capMod=          2               xpart=          1         
+     mobMod=          1              nqsMod=          0         
+        elm=          5            sfvtflag=          0         
+        tox=    7.6e-09 meter            xj=    1.5e-07 meter   
+    binflag=          0                lmin=          0 meter   
+       lmax=          0 meter          wmin=          0 meter   
+       wmax=          0 meter          lref=          0 meter   
+       wref=          0 meter          lint=4.30928e-09 meter   
+       wint=5.96223e-08 meter         lmult=          1         
+      wmult=          1                  ll=          0         
+        lln=          1                  lw=          0         
+        lwn=          1                 lwl=          0         
+         wl=          0                 wln=          1         
+         ww=          0                 wwn=          1         
+        wwl=          0                 dwg=-1.5962e-08 m/V     
+        dwb=1.37892e-08 m/V^1/2          a0=    1.12101         
+        ags=   0.396195 V^-1             b0=6.49314e-07 meter   
+         b1=4.27322e-06 meter          keta=   -0.00927 V^-1    
+       voff=      -0.15 V             ngate=          0 cm^-3   
+        vbx=          0 V               vbm=         -3 V       
+         xt=   1.55e-07 meter          vth0=  -0.663659 V       
+        nch=    1.7e+17 cm^-3          nsub=      6e+16 cm^-3   
+        nlx=1.51028e-07 meter        gamma1=          0 V^-1/2  
+     gamma2=          0 V^-1/2           k1=   0.456478 V^1/2   
+         k2=  -0.019447                  k3=    39.3829         
+        k3b=    -2.8931 V^-1             w0=2.65558e-06 meter   
+       dvt0=    1.17446                dvt1=   0.763113         
+       dvt2=  -0.103517 V^-1          dvt0w=          0 meter^-1
+      dvt1w=    5.3e+06 meter^-1      dvt2w=     -0.032 V^-1    
+       dsub=   0.243603                eta0=  0.0286461         
+       etab=          0 V^-1             u0=    151.331 cm^2/V/sec
+         ua=2.06121e-10 m/V              ub=1.82348e-18 (m/V)^2 
+         uc=-8.97321e-12 V^-1           vsat=      99156 m/sec   
+         a1=          0 v^-1             a2=          1         
+      delta=       0.01 V              rdsw=    2307.25 ohm-um  
+       prwg=     -0.001 V^-1           prwb=          0 V^-1/2  
+         wr=          1                pclm=    4.35975         
+    pdiblc1=0.000744702             pdiblc2= 0.00425607         
+    pdiblcb=          0 V^-1         pscbe1=1.34762e+10 V/m     
+     pscbe2=      5e-09 V/m           drout=  0.0120292         
+       pvag=    3.66979             nfactor=          2         
+       cdsc=0.000659308 f/m^2         cdscb=          0 f/V/m^2 
+      cdscd=          0 f/V/m^2         cit=          0 f/m^2   
+     alpha0=          0 m/V           beta0=         30 V       
+        dlc=4.30928e-09 meter           dwc=5.96223e-08 meter   
+        clc=      1e-07 meter           cle=        0.6         
+       cgso=  2.307e-10 f/m            cgdo=  2.307e-10 f/m     
+       cgbo=          0 f/m            cgsl=          0 f/m     
+       cgdl=          0 f/m          ckappa=        0.6         
+         cf=8.75406e-11 f/m            tnom=     300.15 K       
+        kt1=      -0.11 V              kt1l=          0         
+        kt2=      0.022                 ute=       -1.5         
+        ua1=   4.31e-09 m/V             ub1=  -7.61e-18 (m/V)^2 
+        uc1=   -5.6e-11 m/V^2            at=      33000 m/s     
+        prt=          0         
+        using Berkeley noise model       noiMod=          1         
+       noia=    9.9e+18                noib=       2400         
+       noic=    1.4e-12                  em=    4.1e+07         
+         ef=          1                  af=          1         
+         kf=          0         
+        using Hspice diodes            using ACM 
+        acm=         0                 hdif=         0 meter    
+       ldif=         0 meter             js=         0 amp/m^2  
+        jsw=         0 amp/m            xti=         0          
+          n=         1                   cj=0.00142028 f/m^2    
+         mj=  0.549088                   pb=      0.99 V        
+       cjsw=4.77361e-10 f/m             mjsw=  0.199742          
+        php=      0.99 V               pbsw (not used)           
+     cjgate=4.77361e-10 f/m            cjswg (not used)           
+      mjswg (not used)                 pbswg (not used)           
+      lketa= 0.00602797               wketa= -0.0101398         
+      pvth0= 0.00658707                 pk2= 0.00101159         
+      prdsw=   -93.5582         
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  optimize model parameters        tnom=  25.000 temp=  25.000         
+******  
+*********************************
+***  model name:   0:optmod  ****
+*********************************
+
+    names  values   units     names  values   units     names  values   units
+    -----  ------   -----     -----  ------   -----     -----  ------   -----
+   level=   3.00             relin=   1.00m           relout=   1.00m        
+    grad=   1.00u            close=   1.00               cut=   2.00         
+     max= 600.00k           itropt=  20.00            cendif=   1.00n        
+  difsiz=   1.00m           parmin= 100.00m        
+ 
+
+**warning** both nodes of source     0:vgnd            
+            are connected together
+
+
+*** warning *** pulse rise time is  < or = zero, reset to tstep
+
+
+*** warning *** pulse fall time is  < or = zero, reset to tstep
+
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.pa4                                            
+
+
+
+entering lmopt 
+  parm names init guess, lower, upper bounds
+setup                   0.            0.        1.5000E-09        0.    
+**warning** negative-mos conductance =     9:m0               iter=   38
+vds,vgs,vbs =      -251.          2.97            0.    
+ gm,gds,gmbs,ids=      25.0         0.135        -4.823E-02     0.159    
+bisec-opt.  iter =   1 xlo =        0.      xhi =   1.50000E-09
+                         x =        0.     xnew =   1.50000E-09
+                       err =   0.99267    
+
+bisec-opt.  iter =   2 xlo =        0.      xhi =   1.50000E-09
+                         x =   1.50000E-09 xnew =   7.50000E-10
+                       err =  -0.15966    
+
+no convergence with standard algorithm,  trying damped pseudo-transient
+
+ *** initial damped pseudo transient completed. ***
+ *** final try started ***
+
+**warning** This was a difficult operating point.
+            You can speed up your simulation by specifying:
+            .OPTION CONVERGE=1 GMINDC=   1.0000E-12
+
+bisec-opt.  iter =   3 xlo =   7.50000E-10  xhi =   1.50000E-09
+                         x =   7.50000E-10 xnew =   1.12500E-09
+                       err =   0.92780    
+
+bisec-opt.  iter =   4 xlo =   7.50000E-10  xhi =   1.12500E-09
+                         x =   1.12500E-09 xnew =   9.37500E-10
+                       err =  -0.15950    
+
+bisec-opt.  iter =   5 xlo =   7.50000E-10  xhi =   9.37500E-10
+                         x =   9.37500E-10 xnew =   8.43750E-10
+                       err =  -0.15716    
+
+bisec-opt.  iter =   6 xlo =   7.50000E-10  xhi =   8.43750E-10
+                         x =   8.43750E-10 xnew =   7.96875E-10
+                       err =  -0.14629    
+
+bisec-opt.  iter =   7 xlo =   7.50000E-10  xhi =   7.96875E-10
+                         x =   7.96875E-10 xnew =   7.73438E-10
+                       err =  -0.11470    
+
+bisec-opt.  iter =   8 xlo =   7.73438E-10  xhi =   7.96875E-10
+                         x =   7.73438E-10 xnew =   7.85156E-10
+                       err =   0.71597    
+
+bisec-opt.  iter =   9 xlo =   7.73438E-10  xhi =   7.85156E-10
+                         x =   7.85156E-10 xnew =   7.79297E-10
+                       err =  -5.74925E-02
+
+bisec-opt.  iter =  10 xlo =   7.79297E-10  xhi =   7.85156E-10
+                         x =   7.79297E-10 xnew =   7.82227E-10
+                       err =   0.14050    
+
+bisec-opt.  iter =  11 xlo =   7.79297E-10  xhi =   7.82227E-10
+                         x =   7.82227E-10 xnew =   7.80762E-10
+                       err =  -4.41953E-03
+
+bisec-opt.  iter =  12 xlo =   7.80762E-10  xhi =   7.82227E-10
+                         x =   7.80762E-10 xnew =   7.81494E-10
+                       err =   4.82983E-02
+
+bisec-opt.  iter =  13 xlo =   7.81494E-10  xhi =   7.82227E-10
+                         x =   7.81494E-10 xnew =   7.81860E-10
+                       err =   1.80963E-02
+
+bisec-opt.  iter =  14 xlo =   7.81860E-10  xhi =   7.82227E-10
+                         x =   7.81860E-10 xnew =   7.82043E-10
+                       err =   5.93528E-03
+
+bisec-opt.  iter =  15 xlo =   7.82043E-10  xhi =   7.82227E-10
+                         x =   7.82043E-10 xnew =   7.82135E-10
+                       err =   6.24613E-04
+
+bisec-opt.  iter =  16 xlo =   7.82043E-10  xhi =   7.82135E-10
+                         x =   7.82135E-10 xnew =   7.82089E-10
+                       err =  -1.93845E-03
+
+bisec-opt.  iter =  17 xlo =   7.82043E-10  xhi =   7.82089E-10
+                         x =   7.82089E-10 xnew =   7.82066E-10
+                       err =  -6.67430E-04
+
+         optimization completed, the condition
+         relin =  1.0000E-03 is satisfied
+
+         optimization completed, the condition
+         relout =  1.0000E-03 is satisfied
+
+
+**** optimized parameters optsetup        
+
+.param setup         = 782.0892p      
+
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  operating point information      tnom=  25.000 temp= 100.000         
+******  
+***** operating point status is voltage   simulation time is     0.     
+    node    =voltage       node    =voltage       node    =voltage
+
+
++ 0:ce      =   2.9700   0:clk     =   0.       0:d       =   6.7627n
++ 0:diff_1  =   2.9700   0:q       =   1.3476   0:vce     =   2.9700 
++ 0:vclk    =   0.       0:vd      =   0.       0:vdd     =   2.9700 
++ 1:in1     =   2.9700   1:in2     =   6.7627n  1:nc1     =   6.7627n
++ 2:out1    =   2.9700   3:out1    =   0.       4:d0      =  13.7332n
++ 5:in1     =   2.9700   6:min     =  17.6588n  6:mout    =   2.9700 
++ 6:s       =   1.3986   6:s_n     =   1.3476   7:n1      =  17.9459n
++ 7:out_n   =   2.9700   7:s0_n    =  11.3427n
+
+
+
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.tr8                                            
+
+******  
+*      $id$                                                                   
+ ******  transient analysis               tnom=  25.000 temp= 100.000         
+******  
+  setup_lh        =  5.7292E-10  targ=  7.2035E-09   trig=  6.6305E-09
+  clkslew         =  3.1960E-10  targ=  7.4375E-09   trig=  7.1179E-09
+  vcrit           =  5.9241E-01
+  optpass         =  8.0053E-01
+ Opening plot unit= 15
+file=./dffce_2x.ce.clk.q.ces_0.tr9                                            
+
+******  
+*      $id$                                                                   
+ ******  transient analysis               tnom=  25.000 temp= 100.000         
+******  
+  setup_lh        =  5.7292E-10  targ=  7.2035E-09   trig=  6.6305E-09
+  clkslew         =  3.1960E-10  targ=  7.4375E-09   trig=  7.1179E-09
+  vcrit           =  5.9241E-01
+  optpass         =  8.0053E-01
+  clk_q           =  6.2005E-10  targ=  7.8235E-09   trig=  7.2035E-09
+
+         ***** job concluded
+ ******  Star-HSPICE  --    98.2  (980711)  03:10:44  01/09/2000  solaris      
+******  
+*      $id$                                                                   
+ ******  job statistics summary           tnom=  25.000 temp= 100.000         
+******  
+
+          total memory used        315 kbytes
+
+ # nodes =    24 # elements=    49
+ # diodes=     0 # bjts    =     0 # jfets   =     0 # mosfets =    32
+
+    analysis      time      # points  tot. iter  conv.iter
+
+    op point          1.30         1       564
+    transient        16.90      2401     23750     10418 rev=  317
+    readin            0.06
+    errchk            0.02
+    setup             0.00
+    output            0.01
+          total cpu time         17.55 seconds
+              job started at  03:10:44  01/09/2000
+              job ended   at  03:12:08  01/09/2000
+
+
+lic: Release  token(s) 
+HSPICE job dffce_2x.ce.clk.q.ces_0.sp completed.
+Sun Jan  9 03:12:09 PST 2000
